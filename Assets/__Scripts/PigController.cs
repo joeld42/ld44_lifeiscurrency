@@ -22,15 +22,21 @@ public class PigController : MonoBehaviour
 
     [Header("Buoyancy")]
     public float airDensity = 1;
-    public float waterDensity = 1000;
-    [SerializeField]
-    private Vector2 buoyancyForce, fullySubmergedForce, fullyEmergedForce;
-    
-    //[SerializeField]
-    float volume;
+    public float waterDensity = 100;
+    public float dragCoefficient = 0.47f;
     public float waterHeight = 0;
-    //[SerializeField]
+
+    [Header("Buoyancy Debug")]
+    [SerializeField]
+    float volume;
+    [SerializeField]
+    float area, density;
+    [SerializeField]
     bool inWater, fullySubmerged;
+    [SerializeField]
+    private Vector2 buoyancyForce, dragForce, fullySubmergedForce, fullyEmergedForce;
+    
+
 
     // TODO: Replace with a fancy coin-meter 
     [Header("Coins")]
@@ -93,10 +99,21 @@ public class PigController : MonoBehaviour
     void FixedUpdate()
     {
         Vector2 v = rigidbody.velocity;
-        if (Mathf.Abs(v.x) > speedLimit.x) v.x = speedLimit.x * Mathf.Sign(v.x);
-        if (Mathf.Abs(v.y) > speedLimit.y) v.y = speedLimit.x * Mathf.Sign(v.y);
-        RecalculateBuoyancy();
+        bool setV = false;
+        if (Mathf.Abs(v.x) > speedLimit.x) 
+        {
+            v.x = speedLimit.x * Mathf.Sign(v.x);
+            setV = true;
+        }
+        if (Mathf.Abs(v.y) > speedLimit.y)
+        {
+            v.y = speedLimit.x * Mathf.Sign(v.y);
+            setV = true;
+        }
+        if (setV) rigidbody.velocity = v;
+        CalculateForces();
         rigidbody.AddForce(buoyancyForce);
+        rigidbody.AddForce(dragForce);
     }
 
     public void onPlayAgain()
@@ -135,14 +152,16 @@ public class PigController : MonoBehaviour
     {
         rigidbody.mass = minMass + coinCount * coinMass;
         float radius = collider.radius;
-        volume = 4f * Mathf.PI * radius * radius * radius / 3f;
+        area = Mathf.PI * radius * radius;
+        volume = 4f * area * radius / 3f;
+        density = rigidbody.mass /volume;
         fullySubmergedForce = volume * waterDensity * -Physics.gravity;
         fullyEmergedForce = volume * airDensity * -Physics.gravity;
 
-        RecalculateBuoyancy();
+        CalculateForces();
     }
 
-    void RecalculateBuoyancy()
+    void CalculateForces()
     {
         float radius = collider.radius;
         float h = waterHeight + radius - transform.position.y;
@@ -150,14 +169,19 @@ public class PigController : MonoBehaviour
         inWater = h > 0;
         fullySubmerged = h > radius * 2;
             
+        dragForce = -rigidbody.velocity.normalized * (.5f * rigidbody.velocity.sqrMagnitude * dragCoefficient * area);
+        
         if (!inWater)
         {
             buoyancyForce = fullyEmergedForce;
+            dragForce *= airDensity;
         } 
         else if (fullySubmerged)
         {
             buoyancyForce = fullySubmergedForce;            
+            //dragForce *= waterDensity;
         } else {
+            //dragForce *= waterDensity;
 
             float asq = 2 * radius * h - h * h;
             float submergedVolume = ((Mathf.PI * h)/ 6.0f)*(3*asq+h*h);
