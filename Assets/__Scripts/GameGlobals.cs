@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameGlobals : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class GameGlobals : MonoBehaviour
 
     public delegate void GameOverAction();
     public static event GameOverAction OnGameOver;
+
+    public bool isGameOver = false;
 
     void Awake()
     {
@@ -31,8 +34,15 @@ public class GameGlobals : MonoBehaviour
         
     }
 
+    public void RestartGame()
+    {
+        isGameOver = false;
+        SceneManager.LoadScene("PigGame");
+    }
+
     public void TriggerGameOver()
     {
+        isGameOver = true;
         if (OnGameOver != null)
         {
             OnGameOver();

@@ -30,7 +30,10 @@ public class UIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetButtonDown("Fire3") && (GameGlobals.instance.isGameOver))
+        {
+            onPlayAgain();
+        }
     }
 
     void UpdateCoinText( int coins )
@@ -41,10 +44,9 @@ public class UIController : MonoBehaviour
     void GameOver()
     {
         gameOverPanel.gameObject.SetActive(true);
-
     }
     public void onPlayAgain()
     {
-        SceneManager.LoadScene("PigGame");
+        GameGlobals.instance.RestartGame();
     }
 }
