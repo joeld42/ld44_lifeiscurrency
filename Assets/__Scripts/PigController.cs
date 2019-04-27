@@ -20,11 +20,11 @@ public class PigController : MonoBehaviour
 
     public float minMass = 6f, coinMass = 0.5f;
 
-    [Header("Bouyancy")]
+    [Header("Buoyancy")]
     public float airDensity = 1;
     public float waterDensity = 1000;
     [SerializeField]
-    private Vector2 force, fullySubmergedForce, fullyEmergedForce;
+    private Vector2 buoyancyForce, fullySubmergedForce, fullyEmergedForce;
     
     //[SerializeField]
     float volume;
@@ -88,8 +88,8 @@ public class PigController : MonoBehaviour
         Vector2 v = rigidbody.velocity;
         if (Mathf.Abs(v.x) > speedLimit.x) v.x = speedLimit.x * Mathf.Sign(v.x);
         if (Mathf.Abs(v.y) > speedLimit.y) v.y = speedLimit.x * Mathf.Sign(v.y);
-        RecalculateBouyancy();
-        rigidbody.AddForce(force);
+        RecalculateBuoyancy();
+        rigidbody.AddForce(buoyancyForce);
     }
 
     public void onPlayAgain()
@@ -132,10 +132,10 @@ public class PigController : MonoBehaviour
         fullySubmergedForce = volume * waterDensity * -Physics.gravity;
         fullyEmergedForce = volume * airDensity * -Physics.gravity;
 
-        RecalculateBouyancy();
+        RecalculateBuoyancy();
     }
 
-    void RecalculateBouyancy()
+    void RecalculateBuoyancy()
     {
         float radius = collider.radius;
         float h = waterHeight + radius - transform.position.y;
@@ -145,18 +145,18 @@ public class PigController : MonoBehaviour
             
         if (!inWater)
         {
-            force = fullyEmergedForce;
+            buoyancyForce = fullyEmergedForce;
         } 
         else if (fullySubmerged)
         {
-            force = fullySubmergedForce;            
+            buoyancyForce = fullySubmergedForce;            
         } else {
 
             float asq = 2 * radius * h - h * h;
             float submergedVolume = ((Mathf.PI * h)/ 6.0f)*(3*asq+h*h);
 
-            force = submergedVolume * waterDensity * -(Vector2)Physics.gravity;
-            force += (volume - submergedVolume) * airDensity * -(Vector2)Physics.gravity;
+            buoyancyForce = submergedVolume * waterDensity * -(Vector2)Physics.gravity;
+            buoyancyForce += (volume - submergedVolume) * airDensity * -(Vector2)Physics.gravity;
 	   }
 
         // if (debugDraw) Debug.DrawRay(wp, force/mass);
