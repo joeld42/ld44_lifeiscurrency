@@ -28,7 +28,16 @@ public class SceneryLoader : MonoBehaviour
             }
         }
 
+        loadedLevel = SceneManager.GetSceneByName(levelName);
         SceneManager.LoadScene(levelName, LoadSceneMode.Additive);
+    }
+
+    public void LoadLevel(string sceneName)
+    {
+        if (loadedLevel != null)
+        {
+            // SceneManager.UnnloadSceneAsync(loadedLevel.name);
+        }
     }
 
 
