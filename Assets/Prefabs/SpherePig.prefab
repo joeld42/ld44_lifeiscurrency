@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &9016499868046223219
+--- !u!1 &3636216337128758532
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,45 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9016499868046223215}
-  - component: {fileID: 9016499868046223214}
-  - component: {fileID: 9016499868046223213}
-  - component: {fileID: 9016499868046223208}
-  - component: {fileID: 9016499868046223209}
-  - component: {fileID: 9016499868046223212}
+  - component: {fileID: 3636216337128758552}
+  - component: {fileID: 3636216337128758553}
+  - component: {fileID: 3636216337128758554}
   m_Layer: 0
-  m_Name: SpherePig
+  m_Name: SpherePigGeometry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &9016499868046223215
+--- !u!4 &3636216337128758552
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9016499868046223219}
-  m_LocalRotation: {x: 0, y: 0.9063079, z: 0, w: 0.42261827}
-  m_LocalPosition: {x: -8.191964, y: 2.0890703, z: 0.025582362}
+  m_GameObject: {fileID: 3636216337128758532}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 9016499868046223215}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 31.835001, y: 125.01101, z: 7.2750006}
---- !u!33 &9016499868046223214
+  m_LocalEulerAnglesHint: {x: 0, y: 130, z: 0}
+--- !u!33 &3636216337128758553
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9016499868046223219}
+  m_GameObject: {fileID: 3636216337128758532}
   m_Mesh: {fileID: -2432090755550338912, guid: d362a2d793b7dd14a9f21f28b0a7c350, type: 3}
---- !u!23 &9016499868046223213
+--- !u!23 &3636216337128758554
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9016499868046223219}
+  m_GameObject: {fileID: 3636216337128758532}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -80,6 +77,40 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &9016499868046223219
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9016499868046223215}
+  - component: {fileID: 9016499868046223208}
+  - component: {fileID: 9016499868046223209}
+  - component: {fileID: 9016499868046223212}
+  m_Layer: 0
+  m_Name: SpherePig
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9016499868046223215
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9016499868046223219}
+  m_LocalRotation: {x: 0, y: 0.9063079, z: 0, w: 0.42261827}
+  m_LocalPosition: {x: -8.191964, y: 2.0890703, z: 0.025582362}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3636216337128758552}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 130, z: 0}
 --- !u!114 &9016499868046223208
 MonoBehaviour:
   m_ObjectHideFlags: 0
