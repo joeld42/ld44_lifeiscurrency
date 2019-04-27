@@ -57,23 +57,20 @@ public class PigController : MonoBehaviour
 
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        
-        if (collision.gameObject.tag == "Coin")
+        if (other.gameObject.tag == "Coin")
         {
-            Coin coin = collision.gameObject.GetComponent<Coin>();
+            Coin coin = other.gameObject.GetComponent<Coin>();
             if (coin == null) {
-                Debug.LogError("Collided with non-Coin tagged as Coin "+collision.gameObject.name, collision.gameObject);
+                Debug.LogError("Collided with non-Coin tagged as Coin "+other.gameObject.name, other.gameObject);
                 return;
             }
-            Debug.Log("OnCollisionEnter2D "+collision.gameObject);
             ChangeCoinCoint(1);
             rigidbody.mass = Mathf.Max(coinCount/20f,1);
             coin.TakeCoin();
         }
     }
-
     void FixedUpdate()
     {
         Vector2 v = rigidbody.velocity;

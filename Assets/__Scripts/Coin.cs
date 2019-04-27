@@ -9,4 +9,9 @@ public class Coin : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    // private void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     Debug.Log("Triggered by "+other.name);
+    // }
 }
