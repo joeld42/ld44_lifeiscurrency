@@ -820,6 +820,8 @@ GameObject:
   - component: {fileID: 1735195569}
   - component: {fileID: 1735195568}
   - component: {fileID: 1735195567}
+  - component: {fileID: 1735195571}
+  - component: {fileID: 1735195570}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -940,6 +942,40 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1735195565}
   m_CullTransparentMesh: 0
+--- !u!114 &1735195570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735195565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
+--- !u!114 &1735195571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735195565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
 --- !u!1 &1800544841
 GameObject:
   m_ObjectHideFlags: 0
@@ -969,7 +1005,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a824ece0c20d33b4483f92c225dec3e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: LevelTest
+  levelName: Level_CageTest
 --- !u!4 &1800544843
 Transform:
   m_ObjectHideFlags: 0
