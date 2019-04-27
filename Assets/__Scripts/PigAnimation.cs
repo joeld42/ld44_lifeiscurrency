@@ -38,8 +38,8 @@ public class PigAnimation : MonoBehaviour
                 m_WingFlapTimer = 0;
             }
             float angle = 60.0f + 60.0f * (0.5f - 0.5f * Mathf.Cos(2.0f * Mathf.PI * m_WingFlapTimer));
-            m_LeftWing.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -angle));
-            m_RightWing.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, angle));
+            m_LeftWing.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, angle));
+            m_RightWing.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -angle));
         }
     }
 
