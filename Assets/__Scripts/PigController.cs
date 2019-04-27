@@ -61,14 +61,12 @@ public class PigController : MonoBehaviour
     {
         if (other.gameObject.tag == "Coin")
         {
-            Coin coin = other.gameObject.GetComponent<Coin>();
+            IChangeScore coin = other.gameObject.GetComponent<IChangeScore>();
             if (coin == null) {
-                Debug.LogError("Collided with non-Coin tagged as Coin "+other.gameObject.name, other.gameObject);
+                Debug.LogError("Collided without IChangeScore tagged as Coin "+other.gameObject.name, other.gameObject);
                 return;
             }
-            ChangeCoinCoint(1);
-            rigidbody.mass = Mathf.Max(coinCount/20f,1);
-            coin.TakeCoin();
+            coin.ChangeScore(this);
         }
     }
     void FixedUpdate()
@@ -95,13 +93,15 @@ public class PigController : MonoBehaviour
             bullet.velocity = rigidbody.velocity + new Vector2(8, 0);
             fireCoolDown = 0.5f;
 
-            ChangeCoinCoint(-1);
+            ChangeCoinCount(-1);
         }
     }
 
-    void ChangeCoinCoint( int changeAmount )
+    public void ChangeCoinCount( int changeAmount )
     {
         coinCount = coinCount + changeAmount;
+        rigidbody.mass = Mathf.Max(coinCount/20f,1);
+
         if (CoinCountChanged != null) CoinCountChanged(coinCount);
         if (coinCount <=0)
         {
