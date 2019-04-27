@@ -30,14 +30,12 @@ public class PigController : MonoBehaviour
 
     public ForceMode2D forceMode;
 
-    public RectTransform gameOverPanel;
 
     public System.Action<int> CoinCountChanged;
     
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
-        gameOverPanel.gameObject.SetActive(false);
     }
     void Update()
     {
@@ -80,11 +78,6 @@ public class PigController : MonoBehaviour
         SceneManager.LoadScene("PigGame");
     }
 
-    void GameOver()
-    {
-        gameOverPanel.gameObject.SetActive(true);
-
-    }
     void FireCoin()
     {
         //if (fireCoolDown > 0) return;
@@ -104,10 +97,13 @@ public class PigController : MonoBehaviour
     void ChangeCoinCoint( int changeAmount )
     {
         coinCount = coinCount + changeAmount;
-        CoinCountChanged(coinCount);
+        if (CoinCountChanged != null)
+        {
+            CoinCountChanged(coinCount);
+        }
         if (coinCount <=0)
         {
-            GameOver();
+            GameGlobals.instance.TriggerGameOver();
         }
     }
     
