@@ -32,6 +32,7 @@ public class PigController : MonoBehaviour
 
 
     public System.Action<int> CoinCountChanged;
+    public System.Action<Vector3> CollidedAt;
     
     void Start()
     {
@@ -58,11 +59,13 @@ public class PigController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        
         if (collision.gameObject.tag == "Coin")
         {
             //collision.gameObject.SendMessage("ApplyDamage", 10);
             Debug.Log("OnCollisionEnter2D "+collision.gameObject);
-            rigidbody.mass += 1;
+            ChangeCoinCoint(1);
+            rigidbody.mass = Mathf.Max(coinCount/20f,1);
         }
     }
 
@@ -97,10 +100,7 @@ public class PigController : MonoBehaviour
     void ChangeCoinCoint( int changeAmount )
     {
         coinCount = coinCount + changeAmount;
-        if (CoinCountChanged != null)
-        {
-            CoinCountChanged(coinCount);
-        }
+        if (CoinCountChanged != null) CoinCountChanged(coinCount);
         if (coinCount <=0)
         {
             GameGlobals.instance.TriggerGameOver();
