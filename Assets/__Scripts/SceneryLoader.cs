@@ -9,34 +9,46 @@ public class SceneryLoader : MonoBehaviour
     // TODO: make this pick levels more smarter
     public string levelName;
 
-   Scene loadedLevel;
-
     // Start is called before the first frame update
     void Start()
     {
 
-        // is a Level already loaded?
+        // is a Level already loaded? if so, use it
         for (int n = 0; n < SceneManager.sceneCount; ++n)
         {
             Scene scene = SceneManager.GetSceneAt(n);
             if (scene.name.StartsWith("Level")) 
             {
-                loadedLevel = scene;
-                Debug.LogFormat("Scene {0} {1} already loaded", loadedLevel.name, loadedLevel.buildIndex) ;
-                if (scene.buildIndex < 0) Debug.LogError(loadedLevel.name+" is not in Build Settings. It will not ship.");
+                levelName = scene.name;
+                Debug.LogFormat("Scene {0} {1} already loaded", scene.name, scene.buildIndex) ;
+                if (scene.buildIndex < 0) Debug.LogError(scene.name+" is not in Build Settings. It will not ship.");
                 return;
             }
         }
 
-        loadedLevel = SceneManager.GetSceneByName(levelName);
-        SceneManager.LoadScene(levelName, LoadSceneMode.Additive);
+        // SceneManager.LoadScene(levelName, LoadSceneMode.Additive);
+        LoadLevel(levelName);
     }
 
     public void LoadLevel(string sceneName)
     {
-        if (loadedLevel != null)
+        if (levelName != null)
+        {            
+            Scene scene = SceneManager.GetSceneByName(levelName);
+            if (scene != null && scene.isLoaded)
+            {
+                SceneManager.UnloadSceneAsync(levelName);
+            }
+        }
+        levelName = sceneName;
+        SceneManager.LoadSceneAsync(levelName, LoadSceneMode.Additive);
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
         {
-            // SceneManager.UnnloadSceneAsync(loadedLevel.name);
+            LoadLevel("Level_1");
         }
     }
 
