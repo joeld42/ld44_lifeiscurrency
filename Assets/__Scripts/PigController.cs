@@ -62,10 +62,15 @@ public class PigController : MonoBehaviour
         
         if (collision.gameObject.tag == "Coin")
         {
-            //collision.gameObject.SendMessage("ApplyDamage", 10);
+            Coin coin = collision.gameObject.GetComponent<Coin>();
+            if (coin == null) {
+                Debug.LogError("Collided with non-Coin tagged as Coin "+collision.gameObject.name, collision.gameObject);
+                return;
+            }
             Debug.Log("OnCollisionEnter2D "+collision.gameObject);
             ChangeCoinCoint(1);
             rigidbody.mass = Mathf.Max(coinCount/20f,1);
+            coin.TakeCoin();
         }
     }
 
