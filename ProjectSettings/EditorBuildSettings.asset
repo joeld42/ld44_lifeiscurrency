@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/__Scenes/PigGame.unity
+    guid: b9c5cb839e9806346bbdbe38fb2c0490
+  - enabled: 1
+    path: Assets/__Scenes/Scenery/TestLevel.unity
+    guid: b7941cd16accb4048b0dc4484c79801a
   m_configObjects: {}
