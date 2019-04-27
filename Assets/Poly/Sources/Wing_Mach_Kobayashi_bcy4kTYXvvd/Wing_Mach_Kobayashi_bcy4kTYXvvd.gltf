@@ -6,7 +6,7 @@
 	},
 	"buffers": {
 		"sketch": {
-			"byteLength": 20572,
+			"byteLength": 20292,
 			"type": "arraybuffer",
 			"uri": "sketch.bin"
 		}
@@ -17,19 +17,19 @@
 			"byteOffset": 0,
 			"byteStride": 12,
 			"componentType": 5126,
-			"count": 298,
-			"max": [ 0.02099282, -6.938073E-05, 0.03297282 ],
-			"min": [ -0.07471588, -0.0001835686, -0.1089143 ],
+			"count": 294,
+			"max": [ 0.181653, -5.91975E-05, 0.03090984 ],
+			"min": [ -0.03100731, -0.0002636555, -0.1472947 ],
 			"type": "VEC3"
 		 },
 		"accessor_normal_Paper_f1114e2e-eb8d-4fde-915a-6e653b54e9f5_0_0": {
 			"bufferView": "vec3BufferView",
-			"byteOffset": 3576,
+			"byteOffset": 3528,
 			"byteStride": 12,
 			"componentType": 5126,
-			"count": 298,
-			"max": [ 0.000649913, 1, 0.0005865985 ],
-			"min": [ -0.0001103524, -1, -9.658378E-05 ],
+			"count": 294,
+			"max": [ 0.0001348909, 1, 0.0002636258 ],
+			"min": [ -0.0002079473, -1, -0.0002241251 ],
 			"type": "VEC3"
 		 },
 		"accessor_color_Paper_f1114e2e-eb8d-4fde-915a-6e653b54e9f5_0_0": {
@@ -37,19 +37,19 @@
 			"byteOffset": 0,
 			"byteStride": 16,
 			"componentType": 5126,
-			"count": 298,
-			"max": [ 0.9921569, 0.9764706, 0.9882353, 1 ],
-			"min": [ 0.9921569, 0.9764706, 0.9882353, 0 ],
+			"count": 294,
+			"max": [ 0.9921569, 0.9843137, 0.9882353, 1 ],
+			"min": [ 0.9921569, 0.9843137, 0.9882353, 0 ],
 			"type": "VEC4"
 		 },
 		"accessor_tangent_Paper_f1114e2e-eb8d-4fde-915a-6e653b54e9f5_0_0": {
 			"bufferView": "vec4BufferView",
-			"byteOffset": 4768,
+			"byteOffset": 4704,
 			"byteStride": 16,
 			"componentType": 5126,
-			"count": 298,
-			"max": [ 0.984756, 0, 0.9998116, 1 ],
-			"min": [ -0.9988753, -0.0008668593, -0.9993759, 1 ],
+			"count": 294,
+			"max": [ 0.9999787, 0, 0.9997429, 1 ],
+			"min": [ -0.999907, -0.0002505382, -0.9757544, 1 ],
 			"type": "VEC4"
 		 },
 		"accessor_uv0_Paper_f1114e2e-eb8d-4fde-915a-6e653b54e9f5_0_0": {
@@ -57,9 +57,9 @@
 			"byteOffset": 0,
 			"byteStride": 8,
 			"componentType": 5126,
-			"count": 298,
-			"max": [ 1.249957, 1 ],
-			"min": [ 0.02124246, 0 ],
+			"count": 294,
+			"max": [ 1.146969, 1 ],
+			"min": [ 0.07801286, 0 ],
 			"type": "VEC2"
 		 },
 		"accessor_indices_0_Paper_f1114e2e-eb8d-4fde-915a-6e653b54e9f5_0_0": {
@@ -67,8 +67,8 @@
 			"byteOffset": 0,
 			"byteStride": 0,
 			"componentType": 5123,
-			"count": 750,
-			"max": [ 297 ],
+			"count": 738,
+			"max": [ 293 ],
 			"min": [ 0 ],
 			"type": "SCALAR"
 		 }
@@ -76,26 +76,26 @@
 	"bufferViews": {
 		"ushortBufferView": {
 			"buffer": "sketch",
-			"byteLength": 1500,
+			"byteLength": 1476,
 			"byteOffset": 0,
 			"target": 34963
 		},
 		"vec2BufferView": {
 			"buffer": "sketch",
-			"byteLength": 2384,
-			"byteOffset": 1500,
+			"byteLength": 2352,
+			"byteOffset": 1476,
 			"target": 34962
 		},
 		"vec3BufferView": {
 			"buffer": "sketch",
-			"byteLength": 7152,
-			"byteOffset": 3884,
+			"byteLength": 7056,
+			"byteOffset": 3828,
 			"target": 34962
 		},
 		"vec4BufferView": {
 			"buffer": "sketch",
-			"byteLength": 9536,
-			"byteOffset": 11036,
+			"byteLength": 9408,
+			"byteOffset": 10884,
 			"target": 34962
 		}
 	},
@@ -322,12 +322,12 @@
 		"node_SceneLight_0_-1106": {
 			"name": "node_SceneLight_0_-1106",
 			"light": "SceneLight_0",
-			"matrix": [0.898794, 0.2191856, -0.3796406, 0, -0.4383712, 0.449397, -0.7783785, 0, -1.490116E-08, 0.8660254, 0.4999999, 0, 0.6767911, -6.5343, -1.813535, 1]
+			"matrix": [0.898794, 0.2191856, -0.3796406, 0, -0.4383712, 0.449397, -0.7783785, 0, -1.490116E-08, 0.8660254, 0.4999999, 0, 0.02338352, -1.370531, 0.5746768, 1]
 		},
 		"node_SceneLight_1_-1112": {
 			"name": "node_SceneLight_1_-1112",
 			"light": "SceneLight_1",
-			"matrix": [0.7660444, -0.4924039, -0.4131759, 0, -0.6427876, -0.5868242, -0.4924039, 0, 8.940697E-08, 0.6427876, -0.7660446, 0, 0.6767913, -6.601192, -2.192895, 1]
+			"matrix": [0.7660444, -0.4924039, -0.4131759, 0, -0.6427876, -0.5868242, -0.4924039, 0, 8.940697E-08, 0.6427876, -0.7660446, 0, 0.02338354, -1.384551, 0.4951659, 1]
 		}
 	},
 	"scene": "defaultScene",

@@ -35,9 +35,3 @@ Author: Mach Kobayashi
 URL: https://poly.google.com/view/5XalWNzsx_6
 License: Creative Commons CC-BY
 https://creativecommons.org/licenses/by/3.0/legalcode
-
-Title: Wing
-Author: Mach Kobayashi
-URL: https://poly.google.com/view/71a6fHgMlqU
-License: Creative Commons CC-BY
-https://creativecommons.org/licenses/by/3.0/legalcode
