@@ -20,6 +20,13 @@ public class CameraFollower : MonoBehaviour
     void Update()
     {
         Vector3 screenPos = camera.WorldToScreenPoint(target.position);
+
+        if (screenPos.x < 0f)
+        {
+            // Flew off the left
+            GameGlobals.instance.TriggerGameOver();
+        }
+
         float marginPx = Screen.width * margin;
         float screenEdge = Screen.width - marginPx;
         float moveAmt = screenPos.x - screenEdge;
