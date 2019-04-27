@@ -58,10 +58,10 @@ public class PigController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("OnCollisionEnter2D "+collision.gameObject);
         if (collision.gameObject.tag == "Coin")
         {
             //collision.gameObject.SendMessage("ApplyDamage", 10);
+            Debug.Log("OnCollisionEnter2D "+collision.gameObject);
             rigidbody.mass += 1;
         }
     }
