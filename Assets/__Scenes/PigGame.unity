@@ -400,6 +400,9 @@ MonoBehaviour:
   upforce: {x: 0, y: 200}
   sideforce: {x: 10, y: 0}
   speedLimit: {x: 2, y: 4}
+  bulletPrefab: {fileID: 5852307454140557781, guid: 6816c2105d4549948a81d84e0ad9759b,
+    type: 3}
+  fireCoolDown: 0
   forceMode: 0
 --- !u!58 &1495692021
 CircleCollider2D:
