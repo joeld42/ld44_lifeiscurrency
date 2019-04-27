@@ -95,13 +95,11 @@ MonoBehaviour:
   upforce: {x: 0, y: 200}
   sideforce: {x: 10, y: 0}
   speedLimit: {x: 2, y: 4}
-  coinsCounter: {fileID: 0}
   coinCount: 20
   fireCoolDown: 0
   bulletPrefab: {fileID: 5852307454140557781, guid: 69b6e56e0f3ee4356a601dd7bd7c40f2,
     type: 3}
   forceMode: 0
-  gameOverPanel: {fileID: 0}
 --- !u!58 &9016499868046223209
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -131,8 +129,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.1
+  m_LinearDrag: 0.1
+  m_AngularDrag: 0.8
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0

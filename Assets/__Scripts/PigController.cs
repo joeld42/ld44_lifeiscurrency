@@ -43,12 +43,12 @@ public class PigController : MonoBehaviour
 
         fireCoolDown -= Time.deltaTime;
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Jump"))
         {
             rigidbody.AddForce(upforce, forceMode);
         }
 
-        if (Input.GetButtonDown("Fire2"))
+        if (Input.GetButtonDown("Fire1"))
         {
             FireCoin();
         }
