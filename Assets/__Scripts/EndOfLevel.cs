@@ -24,7 +24,10 @@ public class EndOfLevel : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Triggered by "+other.name);
-        loader.LoadLevel(nextLevel);
+        if (other.gameObject.GetComponent<PigController>() != null)
+        {
+            Debug.Log("EndOfLevel by "+other.name, this);
+            loader.LoadLevel(nextLevel);
+        }
     }
 }
