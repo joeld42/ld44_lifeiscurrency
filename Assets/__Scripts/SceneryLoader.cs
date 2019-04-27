@@ -17,11 +17,11 @@ public class SceneryLoader : MonoBehaviour
         for (int n = 0; n < SceneManager.sceneCount; ++n)
         {
             Scene scene = SceneManager.GetSceneAt(n);
-            if (scene.name.StartsWith("Level")) 
+            if (scene != null && scene.isLoaded && scene.name.StartsWith("Level")) 
             {
-                levelName = scene.name;
-                Debug.LogFormat("Scene {0} {1} already loaded", scene.name, scene.buildIndex) ;
+                Debug.LogFormat("Scene [{0}] {1} buildIndex:{2} already loaded", n, scene.name, scene.buildIndex, this) ;
                 if (scene.buildIndex < 0) Debug.LogError(scene.name+" is not in Build Settings. It will not ship.");
+                levelName = scene.name;
                 return;
             }
         }
@@ -41,7 +41,7 @@ public class SceneryLoader : MonoBehaviour
             }
         }
         levelName = sceneName;
-        SceneManager.LoadSceneAsync(levelName, LoadSceneMode.Additive);
+        SceneManager.LoadScene(levelName, LoadSceneMode.Additive);
     }
 
     void Update()
