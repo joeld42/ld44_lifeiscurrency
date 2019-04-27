@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
+using UnityEngine.SceneManagement;
+
 using TMPro;
 
 using UnityEngine;
+using UnityEngine.UI;
 
 // [Requires("Rigidbody2D")]
 public class PigController : MonoBehaviour
@@ -25,10 +28,13 @@ public class PigController : MonoBehaviour
     public Rigidbody2D bulletPrefab;
 
     public ForceMode2D forceMode;
+
+    public RectTransform gameOverPanel;
     
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+        gameOverPanel.gameObject.SetActive(false);
     }
     void Update()
     {
@@ -67,6 +73,16 @@ public class PigController : MonoBehaviour
         if (Mathf.Abs(v.y) > speedLimit.y) v.y = speedLimit.x * Mathf.Sign(v.y);
     }
 
+    public void onPlayAgain()
+    {
+        SceneManager.LoadScene("PigGame");
+    }
+
+    void GameOver()
+    {
+        gameOverPanel.gameObject.SetActive(true);
+
+    }
     void FireCoin()
     {
         //if (fireCoolDown > 0) return;
@@ -79,7 +95,16 @@ public class PigController : MonoBehaviour
             bullet.velocity = rigidbody.velocity + new Vector2(8, 0);
             fireCoolDown = 0.5f;
 
-            coinCount -= 1;
+            ChangeCoinCoint(-1);
+        }
+    }
+
+    void ChangeCoinCoint( int changeAmount )
+    {
+        coinCount = coinCount + changeAmount;
+        if (coinCount <=0)
+        {
+            GameOver();
         }
     }
     
