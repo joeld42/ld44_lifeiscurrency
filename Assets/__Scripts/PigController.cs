@@ -11,6 +11,8 @@ using UnityEngine.UI;
 // [Requires("Rigidbody2D")]
 public class PigController : MonoBehaviour
 {
+    [Header("Movement")]
+
     new private Rigidbody2D rigidbody;
     public Vector2 upforce = new Vector2(0,200);
     public Vector2 sideforce = new Vector2(10,0);
@@ -20,7 +22,6 @@ public class PigController : MonoBehaviour
 
     // TODO: Replace with a fancy coin-meter 
     [Header("Coins")]
-    public TextMeshProUGUI coinsCounter;
     public int coinCount = 20;
 
     [Header("Firing")]
@@ -30,6 +31,8 @@ public class PigController : MonoBehaviour
     public ForceMode2D forceMode;
 
     public RectTransform gameOverPanel;
+
+    public System.Action<int> CoinCountChanged;
     
     void Start()
     {
@@ -53,15 +56,14 @@ public class PigController : MonoBehaviour
 
         rigidbody.AddForce(sideforce * Input.GetAxis("Horizontal"), forceMode);
 
-        coinsCounter.text = string.Format("Coins: {0}", coinCount );
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("OnCollisionEnter2D "+collision.gameObject);
         if (collision.gameObject.tag == "Coin")
         {
             //collision.gameObject.SendMessage("ApplyDamage", 10);
+            Debug.Log("OnCollisionEnter2D "+collision.gameObject);
             rigidbody.mass += 1;
         }
     }
@@ -102,6 +104,7 @@ public class PigController : MonoBehaviour
     void ChangeCoinCoint( int changeAmount )
     {
         coinCount = coinCount + changeAmount;
+        CoinCountChanged(coinCount);
         if (coinCount <=0)
         {
             GameOver();
