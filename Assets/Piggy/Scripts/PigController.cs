@@ -1,5 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+
+using TMPro;
+
 using UnityEngine;
 
 // [Requires("Rigidbody2D")]
@@ -9,9 +12,17 @@ public class PigController : MonoBehaviour
     public Vector2 upforce = new Vector2(0,200);
     public Vector2 sideforce = new Vector2(10,0);
     public Vector2 speedLimit = new Vector2(2,4);
-    public Rigidbody2D bulletPrefab;
+   
 
+
+    // TODO: Replace with a fancy coin-meter 
+    [Header("Coins")]
+    public TextMeshProUGUI coinsCounter;
+    public int coinCount = 20;
+
+    [Header("Firing")]
     public float fireCoolDown;
+    public Rigidbody2D bulletPrefab;
 
     public ForceMode2D forceMode;
     
@@ -35,6 +46,8 @@ public class PigController : MonoBehaviour
         }
 
         rigidbody.AddForce(sideforce * Input.GetAxis("Horizontal"), forceMode);
+
+        coinsCounter.text = string.Format("Coins: {0}", coinCount );
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -57,12 +70,17 @@ public class PigController : MonoBehaviour
     void FireCoin()
     {
         //if (fireCoolDown > 0) return;
-        //use screen forward, not rigidbody til we get spinning working
-        Vector3 p = transform.position+new Vector3(1.2f, 0, 0);
-        Rigidbody2D bullet = Instantiate(bulletPrefab, p, Quaternion.identity);
-        // Rigidbody2D r2 = bullet.GetComponent<Rigidbody2D>;
-        bullet.velocity = rigidbody.velocity + new Vector2(8,0);
-        fireCoolDown = 0.5f;
+        if (coinCount > 0)
+        {
+            //use screen forward, not rigidbody til we get spinning working
+            Vector3 p = transform.position + new Vector3(1.2f, 0, 0);
+            Rigidbody2D bullet = Instantiate(bulletPrefab, p, Quaternion.identity);
+            // Rigidbody2D r2 = bullet.GetComponent<Rigidbody2D>;
+            bullet.velocity = rigidbody.velocity + new Vector2(8, 0);
+            fireCoolDown = 0.5f;
+
+            coinCount -= 1;
+        }
     }
     
 }
