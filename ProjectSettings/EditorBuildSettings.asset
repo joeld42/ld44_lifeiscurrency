@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/__Scenes/PigGame.unity
     guid: b9c5cb839e9806346bbdbe38fb2c0490
   - enabled: 1
-    path: Assets/__Scenes/Scenery/TestLevel.unity
+    path: Assets/__Scenes/Scenery/LevelTest.unity
     guid: b7941cd16accb4048b0dc4484c79801a
   m_configObjects: {}
