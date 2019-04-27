@@ -51,6 +51,7 @@ public class PigController : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         collider = GetComponent<CircleCollider2D>();
         RecalculateMass();
+
     }
     void Update()
     {
@@ -68,6 +69,12 @@ public class PigController : MonoBehaviour
         }
 
         rigidbody.AddForce(sideforce * minMass * Input.GetAxis("Horizontal"), forceMode);
+
+        // Check if we fell off the world
+        if (transform.position.y < -5.0f)
+        {
+            GameGlobals.instance.TriggerGameOver();
+        }
 
     }
 

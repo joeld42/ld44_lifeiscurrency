@@ -969,7 +969,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a824ece0c20d33b4483f92c225dec3e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: LevelTest
+  levelName: Level_Blocky
 --- !u!4 &1800544843
 Transform:
   m_ObjectHideFlags: 0
@@ -1170,6 +1170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41d7bb1110ed3b64fad34abadc60a208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGameOver: 0
 --- !u!4 &1867088604
 Transform:
   m_ObjectHideFlags: 0
@@ -1270,6 +1271,11 @@ PrefabInstance:
         type: 3}
       propertyPath: coinMass
       value: 1.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 9016499868046223208, guid: abae58425c4974cbe88033178e1924e8,
+        type: 3}
+      propertyPath: coinCount
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6188067269422923742, guid: abae58425c4974cbe88033178e1924e8,
         type: 3}
