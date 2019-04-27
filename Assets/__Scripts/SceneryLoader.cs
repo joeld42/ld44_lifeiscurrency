@@ -12,14 +12,14 @@ public class SceneryLoader : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Scene currentLevel = SceneManager.GetSceneByName(levelName);
-        if (currentLevel == null)
-        {           
-            SceneManager.LoadScene(levelName, LoadSceneMode.Additive);
-        } else
-        {
+        Scene scene = SceneManager.GetSceneByName(levelName);
+        if (scene.isLoaded)
+        {      
             Debug.LogFormat("Scene {0} already loaded", levelName);
+            return;
         }
+
+        SceneManager.LoadScene(levelName, LoadSceneMode.Additive);
     }
 
 }
