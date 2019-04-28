@@ -39,11 +39,13 @@ public class GameGlobals : MonoBehaviour
     {
         isGameOver = false;
         SceneManager.LoadScene("TitleScreen");
+        isGameOver = false;
         OnGameRestart?.Invoke();
     }
 
     public void TriggerGameOver()
     {
+        Debug.Log("Triggering game over");
         isGameOver = true;
         OnGameOver?.Invoke();
     }
