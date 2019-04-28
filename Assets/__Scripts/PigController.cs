@@ -54,6 +54,8 @@ public class PigController : MonoBehaviour
     new private CircleCollider2D collider;
     public System.Action<int> CoinCountChanged;
     public System.Action<Vector3> CollidedAt;
+
+    public float boost;
     
     void Start()
     {
@@ -77,14 +79,14 @@ public class PigController : MonoBehaviour
             FireCoin();
         }
 
-        rigidbody.AddForce(sideforce * minMass * Input.GetAxis("Horizontal"), forceMode);
+        rigidbody.AddForce(sideforce * minMass * Input.GetAxis("Horizontal") * (1 + boost), forceMode);
 
         // Check if we fell off the world
         if (transform.position.y < -5.0f)
         {
             GameGlobals.instance.TriggerGameOver();
         }
-
+        boost = Mathf.Max(0, boost - .01f * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -97,6 +99,7 @@ public class PigController : MonoBehaviour
         var fruit = other.GetComponent<Fruit>();
         if (fruit) {
             fruit.Eat();
+            boost += .6f;
         }
         if (other.gameObject.tag == "Coin")
         {
