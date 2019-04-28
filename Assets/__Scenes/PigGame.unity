@@ -649,7 +649,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1495692019}
-  margin: 0.25
+  margin: 0.49
 --- !u!114 &963194231
 MonoBehaviour:
   m_ObjectHideFlags: 0
