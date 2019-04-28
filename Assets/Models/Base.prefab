@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4886725708986060927}
   - component: {fileID: 5431113071145842199}
   m_Layer: 0
-  m_Name: Base_Jeremy_Cowles_828NdrEhNYM
+  m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,6 +56,8 @@ GameObject:
   - component: {fileID: 6491054686947221187}
   - component: {fileID: 472683733923186809}
   - component: {fileID: 9164290643948370281}
+  - component: {fileID: 3103465259778695561}
+  - component: {fileID: 1875263932636502539}
   m_Layer: 0
   m_Name: node_MatteHull_79348357-432d-4746-8e29-0e25c112e3aa_0_0
   m_TagString: Untagged
@@ -122,3 +124,41 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6206592112318594551}
   m_Mesh: {fileID: 1879842262260128154, guid: 908d1d0eb4428664c96df4836d0fb1de, type: 2}
+--- !u!114 &3103465259778695561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6206592112318594551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecf2d77460ba45948981a319d574061d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &1875263932636502539
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6206592112318594551}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.5213077, y: 1.0963602}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.51823366, y: 0.026355505}
+  m_EdgeRadius: 0
