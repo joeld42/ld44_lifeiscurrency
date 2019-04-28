@@ -28,12 +28,14 @@ public class PigAnimation : MonoBehaviour
         EyesDead,
     }
     private EyeState m_EyeState;
+
     private float m_BlinkTimer;
     const float m_BlinkSpeed = 15.0f;
     const float m_BlinkProbability = 0.2f;
-    const float m_SquintProbability = 0.1f;
+
     private float m_SquintTimer;
     const float m_SquintSpeed = 1.0f;
+    const float m_SquintProbability = 0.0f;
 
     private PigController m_PigController;
     private float m_WingFlapTimer;

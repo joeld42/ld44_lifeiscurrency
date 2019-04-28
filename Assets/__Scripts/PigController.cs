@@ -38,8 +38,9 @@ public class PigController : MonoBehaviour
     bool inWater, fullySubmerged;
     [SerializeField]
     private Vector2 buoyancyForce, dragForce, fullySubmergedForce, fullyEmergedForce;
-    
 
+
+    private PigAnimation m_PigAnimation;
 
     // TODO: Replace with a fancy coin-meter 
     [Header("Coins")]
@@ -64,6 +65,7 @@ public class PigController : MonoBehaviour
         collider = GetComponent<CircleCollider2D>();
         RecalculateMass();
 
+        m_PigAnimation = GetComponent<PigAnimation>();
     }
     void Update()
     {
@@ -94,16 +96,20 @@ public class PigController : MonoBehaviour
     {
         var cage = other.GetComponent<Cage>();
         if (cage) {
+            m_PigAnimation.Squint();
             cage.Break();
             ChangeCoinCount(-2);
         }
         var fruit = other.GetComponent<Fruit>();
         if (fruit) {
+            m_PigAnimation.Blink();
             fruit.Eat();
             boost += .6f;
         }
         if (other.gameObject.tag == "Coin")
         {
+            m_PigAnimation.Blink();
+
             IChangeScore coin = other.gameObject.GetComponent<IChangeScore>();
             if (coin == null) {
                 Debug.LogError("Collided without IChangeScore tagged as Coin "+other.gameObject.name, other.gameObject);
@@ -152,6 +158,8 @@ public class PigController : MonoBehaviour
 
     void FireCoin()
     {
+        m_PigAnimation.Blink();
+
         //if (fireCoolDown > 0) return;
         if (coinCount > 0)
         {
