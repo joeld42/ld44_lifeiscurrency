@@ -16,6 +16,13 @@ public class PigAnimation : MonoBehaviour
     private float m_WingFlapTimer;
     const float m_FlapSpeed = 5.0f;
 
+    private float m_SnoutSniffleTimer;
+    const float m_SniffleSpeed = 6.0f;
+    const float m_SniffleProbability = 0.25f;
+
+    const float m_WaggleSpeed = 2.0f;
+    const float m_WaggleAmount = 20.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +35,7 @@ public class PigAnimation : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             FlapWing();
+            Sniffle();
         }
 
         if (m_WingFlapTimer > 0)
@@ -41,10 +49,38 @@ public class PigAnimation : MonoBehaviour
             m_LeftWing.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, angle));
             m_RightWing.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -angle));
         }
+
+        if (m_SnoutSniffleTimer > 0)
+        {
+            m_SnoutSniffleTimer -= m_SniffleSpeed * Time.deltaTime;
+            if (m_SnoutSniffleTimer < 0)
+            {
+                m_SnoutSniffleTimer = 0;
+            }
+            float angle = -10.0f * (0.5f - 0.5f * Mathf.Cos(2.0f * Mathf.PI * m_SnoutSniffleTimer));
+            m_Snout.transform.localRotation = Quaternion.Euler(new Vector3(angle, -180.0f, 0));
+        }
+        else
+        {
+            if (Random.value > Mathf.Pow(1.0f - m_SniffleProbability, Time.deltaTime))
+            {
+                Sniffle();
+            }
+        }
+
+        // tail waggle
+        float theta = m_WaggleAmount * (Mathf.PerlinNoise(m_WaggleSpeed * Time.time, 0) + 0.5f * Mathf.PerlinNoise(2.01f * m_WaggleSpeed * Time.time, 0));
+        float phi = m_WaggleAmount * (Mathf.PerlinNoise(m_WaggleSpeed * Time.time, 1) + 0.5f * Mathf.PerlinNoise(2.01f * m_WaggleSpeed * Time.time, 1));
+        m_Tail.transform.localRotation = Quaternion.Euler(new Vector3(theta, phi, 0));
     }
 
     void FlapWing()
     {
         m_WingFlapTimer = 1.0f;
+    }
+
+    void Sniffle()
+    {
+        m_SnoutSniffleTimer = 1.0f;
     }
 }
