@@ -161,7 +161,7 @@ public class PigController : MonoBehaviour
 
     public void onPlayAgain()
     {
-        SceneManager.LoadScene("PigGame");
+        GameGlobals.instance.RestartGame();
     }
 
     void FireCoin()

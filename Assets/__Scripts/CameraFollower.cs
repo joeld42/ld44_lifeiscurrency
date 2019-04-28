@@ -10,10 +10,13 @@ public class CameraFollower : MonoBehaviour
     [Tooltip("Follow margin as % of screen size"), Range(0f, 1f)]
     public float margin = 0.25f;
 
+    private bool m_RestartingGame;
+    
     // Start is called before the first frame update
     void Start()
     {
         camera = GetComponent<Camera>();
+        GameGlobals.OnGameRestart += GameRestart;
     }
 
     // Update is called once per frame
@@ -21,7 +24,7 @@ public class CameraFollower : MonoBehaviour
     {
         Vector3 screenPos = camera.WorldToScreenPoint(target.position);
 
-        if (screenPos.x < 0f)
+        if (screenPos.x < 0f && !GameGlobals.instance.isGameOver && !m_RestartingGame)
         {
             // Flew off the left
             GameGlobals.instance.TriggerGameOver();
@@ -30,11 +33,18 @@ public class CameraFollower : MonoBehaviour
         float marginPx = Screen.width * margin;
         float screenEdge = Screen.width - marginPx;
         float moveAmt = screenPos.x - screenEdge;
-        if (moveAmt > 0f)
-        {
-            moveAmt = Mathf.Clamp(moveAmt, 0.0f, marginPx);
-            camera.transform.position += Vector3.right * Time.deltaTime * moveAmt;
-        }
+        float minSpeed = GameGlobals.instance.isGameOver ? 0.0f : 2.0f;
+        moveAmt = Mathf.Clamp(moveAmt, minSpeed, marginPx);
+        camera.transform.position += Vector3.right * Time.deltaTime * moveAmt;
 
+        if (m_RestartingGame)
+        {
+            m_RestartingGame = false;
+        }
+    }
+
+    void GameRestart()
+    {
+        m_RestartingGame = true;
     }
 }
