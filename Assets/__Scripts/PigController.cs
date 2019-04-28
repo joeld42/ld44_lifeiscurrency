@@ -56,7 +56,8 @@ public class PigController : MonoBehaviour
     public System.Action<Vector3> CollidedAt;
 
     public float boost;
-    
+    public Vector2 Velocity => rigidbody.velocity;
+
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();

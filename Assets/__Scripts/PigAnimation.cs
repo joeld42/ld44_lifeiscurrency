@@ -13,6 +13,7 @@ public class PigAnimation : MonoBehaviour
     [SerializeField] private GameObject m_BackRightLeg;
     [SerializeField] private GameObject m_Tail;
 
+    private PigController m_PigController;
     private float m_WingFlapTimer;
     const float m_FlapSpeed = 5.0f;
 
@@ -23,14 +24,12 @@ public class PigAnimation : MonoBehaviour
     const float m_WaggleSpeed = 2.0f;
     const float m_WaggleAmount = 20.0f;
 
-    private float m_ForwardSpeed;
-    private float m_LastPosX;
-    const float m_LegSwingRange = 30.0f;
+    const float m_LegSwingRange = 60.0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        m_PigController = GetComponent<PigController>();
     }
 
     // Update is called once per frame
@@ -79,10 +78,8 @@ public class PigAnimation : MonoBehaviour
 
         // leg swing
         {
-            float pigPos = m_Snout.transform.position.x;
-            float speed = (pigPos - m_LastPosX) / Time.deltaTime;
-            m_LastPosX = pigPos;
-            float angle = -m_LegSwingRange * Mathf.SmoothStep(0, 1, 0.5f + speed);
+            float speed = m_PigController.Velocity.x;
+            float angle = -m_LegSwingRange * (Mathf.SmoothStep(0, 1, 0.5f + 0.1f * speed) - 0.5f);
             m_FrontLeftLeg.transform.localRotation = Quaternion.Euler(new Vector3(angle, 0, 0));
             m_FrontRightLeg.transform.localRotation = Quaternion.Euler(new Vector3(angle, 0, 0));
             m_BackLeftLeg.transform.localRotation = Quaternion.Euler(new Vector3(angle, 0, 0));
