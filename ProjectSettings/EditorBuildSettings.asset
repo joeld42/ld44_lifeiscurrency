@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/__Scenes/TitleScreen.unity
+    guid: 7cdddd2f2839fde4681af842b8121398
+  - enabled: 1
     path: Assets/__Scenes/PigGame.unity
     guid: b9c5cb839e9806346bbdbe38fb2c0490
   - enabled: 1
