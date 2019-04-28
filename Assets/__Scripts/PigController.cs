@@ -53,8 +53,8 @@ public class PigController : MonoBehaviour
     public ForceMode2D forceMode;
 
     new private CircleCollider2D collider;
-    public System.Action<int> CoinCountChanged;
-    public System.Action<Vector3> CollidedAt;
+    public System.Action<int> OnCoinCountChanged;
+    public System.Action<Vector3> OnCollidedAt;
 
     public float boost;
     public Vector2 Velocity => rigidbody.velocity;
@@ -178,7 +178,7 @@ public class PigController : MonoBehaviour
     {
         coinCount = coinCount + changeAmount;
         RecalculateMass();
-        if (CoinCountChanged != null) CoinCountChanged(coinCount);
+        OnCoinCountChanged?.Invoke(coinCount);
         if (coinCount <=0)
         {
             GameGlobals.instance.TriggerGameOver();

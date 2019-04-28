@@ -659,6 +659,8 @@ MonoBehaviour:
   m_BackLeftLeg: {fileID: 725182230638776791}
   m_BackRightLeg: {fileID: 2141760226633145321}
   m_Tail: {fileID: 32030459870330663}
+  m_CoinVisualPrefab: {fileID: 2665857717687905056, guid: 8afdf50e55e844c61a2b809b4bc43987,
+    type: 3}
 --- !u!1001 &491407213574558563
 PrefabInstance:
   m_ObjectHideFlags: 0

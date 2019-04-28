@@ -16,7 +16,7 @@ public class UIController : MonoBehaviour
     void Start()
     {
         gameOverPanel.gameObject.SetActive(false);
-        heroPig.CoinCountChanged += UpdateCoinText;
+        heroPig.OnCoinCountChanged += UpdateCoinText;
         UpdateCoinText(heroPig.coinCount);
 
         GameGlobals.OnGameOver += GameOver;

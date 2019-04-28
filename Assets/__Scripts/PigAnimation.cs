@@ -20,6 +20,9 @@ public class PigAnimation : MonoBehaviour
     [SerializeField] private GameObject m_BackRightLeg;
     [SerializeField] private GameObject m_Tail;
 
+    [Header("Items")]
+    [SerializeField] private GameObject m_CoinVisualPrefab;
+
     enum EyeState
     {
         EyesOpen,
@@ -50,12 +53,17 @@ public class PigAnimation : MonoBehaviour
 
     const float m_LegSwingRange = 60.0f;
 
+    private int m_CoinCount;
+    private List<GameObject> m_Coins;
+
     // Start is called before the first frame update
     void Start()
     {
         m_PigController = GetComponent<PigController>();
         GameGlobals.OnGameOver += GameOver;
         GameGlobals.OnGameRestart += GameRestart;
+        m_PigController.OnCoinCountChanged += CoinCountChanged;
+        m_Coins = new List<GameObject>();
     }
 
     // Update is called once per frame
@@ -150,20 +158,6 @@ public class PigAnimation : MonoBehaviour
         m_EyesDead.SetActive(m_EyeState == EyeState.EyesDead);
     }
 
-    public void Alive()
-    {
-        m_EyeState = EyeState.EyesOpen;
-        m_BlinkTimer = 0.0f;
-        m_SquintTimer = 0.0f;
-    }
-
-    public void Dead()
-    {
-        m_EyeState = EyeState.EyesDead;
-        m_BlinkTimer = 0.0f;
-        m_SquintTimer = 0.0f;
-    }
-
     public void Squint()
     {
         if (m_EyeState != EyeState.EyesDead)
@@ -194,11 +188,44 @@ public class PigAnimation : MonoBehaviour
 
     void GameOver()
     {
+        Debug.Log("Game OVER");
         m_EyeState = EyeState.EyesDead;
+        m_BlinkTimer = 0.0f;
+        m_SquintTimer = 0.0f;
     }
 
     void GameRestart()
     {
+        Debug.Log("Game RESTART");
         m_EyeState = EyeState.EyesOpen;
+        m_BlinkTimer = 0.0f;
+        m_SquintTimer = 0.0f;
+    }
+
+    void CoinCountChanged(int coinCountTarget)
+    {
+        if (coinCountTarget > m_CoinCount)
+        {
+            // add coins
+            while (m_CoinCount < coinCountTarget)
+            {
+                GameObject coin = Instantiate(m_CoinVisualPrefab, transform);
+                Vector3 pilePosition = Mathf.Pow(.008f * m_CoinCount, .2f) * Random.insideUnitSphere;
+                pilePosition.y = 0.8f * Mathf.Abs(pilePosition.y);
+                coin.transform.localPosition = new Vector3(0, 0.8f, 0) + pilePosition;
+                m_Coins.Add(coin);
+                m_CoinCount++;
+            }
+        }
+        else if (coinCountTarget < m_CoinCount)
+        {
+            // remove coins
+            while (m_CoinCount > coinCountTarget && m_CoinCount > 0)
+            {
+                m_CoinCount--;
+                Object.Destroy(m_Coins[m_CoinCount]);
+                m_Coins.RemoveAt(m_CoinCount);
+            }
+        }
     }
 }
