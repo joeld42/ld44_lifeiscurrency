@@ -9,6 +9,8 @@ public class GameGlobals : MonoBehaviour
 
     public delegate void GameOverAction();
     public static event GameOverAction OnGameOver;
+    public delegate void GameRestartAction();
+    public static event GameOverAction OnGameRestart;
 
     public bool isGameOver = false;
 
@@ -31,22 +33,19 @@ public class GameGlobals : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     public void RestartGame()
     {
         isGameOver = false;
         SceneManager.LoadScene("PigGame");
+        OnGameRestart?.Invoke();
     }
 
     public void TriggerGameOver()
     {
         isGameOver = true;
-        if (OnGameOver != null)
-        {
-            OnGameOver();
-        }
+        OnGameOver?.Invoke();
     }
 
     // Update is called once per frame

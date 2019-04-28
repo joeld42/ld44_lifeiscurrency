@@ -52,6 +52,8 @@ public class PigAnimation : MonoBehaviour
     void Start()
     {
         m_PigController = GetComponent<PigController>();
+        GameGlobals.OnGameOver += GameOver;
+        GameGlobals.OnGameRestart += GameRestart;
     }
 
     // Update is called once per frame
@@ -186,5 +188,15 @@ public class PigAnimation : MonoBehaviour
     void Sniffle()
     {
         m_SnoutSniffleTimer = 1.0f;
+    }
+
+    void GameOver()
+    {
+        m_EyeState = EyeState.EyesDead;
+    }
+
+    void GameRestart()
+    {
+        m_EyeState = EyeState.EyesOpen;
     }
 }
