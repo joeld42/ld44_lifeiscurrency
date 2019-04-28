@@ -23,6 +23,10 @@ public class PigAnimation : MonoBehaviour
     const float m_WaggleSpeed = 2.0f;
     const float m_WaggleAmount = 20.0f;
 
+    private float m_ForwardSpeed;
+    private float m_LastPosX;
+    const float m_LegSwingRange = 30.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -72,6 +76,18 @@ public class PigAnimation : MonoBehaviour
         float theta = m_WaggleAmount * (Mathf.PerlinNoise(m_WaggleSpeed * Time.time, 0) + 0.5f * Mathf.PerlinNoise(2.01f * m_WaggleSpeed * Time.time, 0));
         float phi = m_WaggleAmount * (Mathf.PerlinNoise(m_WaggleSpeed * Time.time, 1) + 0.5f * Mathf.PerlinNoise(2.01f * m_WaggleSpeed * Time.time, 1));
         m_Tail.transform.localRotation = Quaternion.Euler(new Vector3(theta, phi, 0));
+
+        // leg swing
+        {
+            float pigPos = m_Snout.transform.position.x;
+            float speed = (pigPos - m_LastPosX) / Time.deltaTime;
+            m_LastPosX = pigPos;
+            float angle = -m_LegSwingRange * Mathf.SmoothStep(0, 1, 0.5f + speed);
+            m_FrontLeftLeg.transform.localRotation = Quaternion.Euler(new Vector3(angle, 0, 0));
+            m_FrontRightLeg.transform.localRotation = Quaternion.Euler(new Vector3(angle, 0, 0));
+            m_BackLeftLeg.transform.localRotation = Quaternion.Euler(new Vector3(angle, 0, 0));
+            m_BackRightLeg.transform.localRotation = Quaternion.Euler(new Vector3(angle, 0, 0));
+        }
     }
 
     void FlapWing()
