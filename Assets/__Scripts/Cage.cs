@@ -5,6 +5,6 @@ using UnityEngine;
 public class Cage : MonoBehaviour
 {
     public void Break() {
-        Destroy(transform.parent.parent.gameObject);
+        Destroy(transform.parent.parent.parent.gameObject);
     }
 }
