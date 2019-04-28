@@ -1,5 +1,17 @@
 This project uses the following items from Poly (http://poly.google.com):
 
+Title: Bar
+Author: Jeremy Cowles
+URL: https://poly.google.com/view/63rAnGEzU9_
+License: Creative Commons CC-BY
+https://creativecommons.org/licenses/by/3.0/legalcode
+
+Title: Base
+Author: Jeremy Cowles
+URL: https://poly.google.com/view/828NdrEhNYM
+License: Creative Commons CC-BY
+https://creativecommons.org/licenses/by/3.0/legalcode
+
 Title: Body
 Author: Mach Kobayashi
 URL: https://poly.google.com/view/73FFHy67wRP
