@@ -30,6 +30,18 @@ URL: https://poly.google.com/view/8YAX9Fa8Yjw
 License: Creative Commons CC-BY
 https://creativecommons.org/licenses/by/3.0/legalcode
 
+Title: Lofted
+Author: Jeremy Cowles
+URL: https://poly.google.com/view/2qm18XCW3N9
+License: Creative Commons CC-BY
+https://creativecommons.org/licenses/by/3.0/legalcode
+
+Title: Lofted
+Author: Jeremy Cowles
+URL: https://poly.google.com/view/aWiJCv74Pa8
+License: Creative Commons CC-BY
+https://creativecommons.org/licenses/by/3.0/legalcode
+
 Title: Nostrils
 Author: Mach Kobayashi
 URL: https://poly.google.com/view/3BnvNSdiM-t
@@ -39,6 +51,12 @@ https://creativecommons.org/licenses/by/3.0/legalcode
 Title: Snout
 Author: Mach Kobayashi
 URL: https://poly.google.com/view/8GyFPyzbn-y
+License: Creative Commons CC-BY
+https://creativecommons.org/licenses/by/3.0/legalcode
+
+Title: Spike
+Author: Jeremy Cowles
+URL: https://poly.google.com/view/efv-sLPmYVq
 License: Creative Commons CC-BY
 https://creativecommons.org/licenses/by/3.0/legalcode
 
