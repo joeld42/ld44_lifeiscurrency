@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class PigAnimation : MonoBehaviour
 {
+    [Header("Eyes")]
+    [SerializeField] private GameObject m_EyesOpen;
+    [SerializeField] private GameObject m_EyesClosed;
+    [SerializeField] private GameObject m_EyesSquint;
+    [SerializeField] private GameObject m_EyesDead;
+
+    [Header("Body")]
     [SerializeField] private GameObject m_Snout;
     [SerializeField] private GameObject m_LeftWing;
     [SerializeField] private GameObject m_RightWing;
@@ -12,6 +19,21 @@ public class PigAnimation : MonoBehaviour
     [SerializeField] private GameObject m_BackLeftLeg;
     [SerializeField] private GameObject m_BackRightLeg;
     [SerializeField] private GameObject m_Tail;
+
+    enum EyeState
+    {
+        EyesOpen,
+        EyesClosed,
+        EyesSquint,
+        EyesDead,
+    }
+    private EyeState m_EyeState;
+    private float m_BlinkTimer;
+    const float m_BlinkSpeed = 15.0f;
+    const float m_BlinkProbability = 0.2f;
+    const float m_SquintProbability = 0.1f;
+    private float m_SquintTimer;
+    const float m_SquintSpeed = 1.0f;
 
     private PigController m_PigController;
     private float m_WingFlapTimer;
@@ -84,6 +106,75 @@ public class PigAnimation : MonoBehaviour
             m_FrontRightLeg.transform.localRotation = Quaternion.Euler(new Vector3(angle, 0, 0));
             m_BackLeftLeg.transform.localRotation = Quaternion.Euler(new Vector3(angle, 0, 0));
             m_BackRightLeg.transform.localRotation = Quaternion.Euler(new Vector3(angle, 0, 0));
+        }
+
+        // eyes
+        if (m_BlinkTimer > 0)
+        {
+            m_EyeState = EyeState.EyesClosed;
+            m_BlinkTimer -= m_BlinkSpeed * Time.deltaTime;
+            if (m_BlinkTimer < 0)
+            {
+                m_BlinkTimer = 0;
+                m_EyeState = EyeState.EyesOpen;
+            }
+        }
+        else if (m_SquintTimer > 0)
+        {
+            m_EyeState = EyeState.EyesSquint;
+            m_SquintTimer -= m_SquintSpeed * Time.deltaTime;
+            if (m_SquintTimer < 0)
+            {
+                m_SquintTimer = 0;
+                m_EyeState = EyeState.EyesOpen;
+            }
+        }
+        else
+        {
+            if (Random.value > Mathf.Pow(1.0f - m_BlinkProbability, Time.deltaTime))
+            {
+                Blink();
+            }
+            else if (Random.value > Mathf.Pow(1.0f - m_SquintProbability, Time.deltaTime))
+            {
+                Squint();
+            }
+        }
+        m_EyesOpen.SetActive(m_EyeState == EyeState.EyesOpen);
+        m_EyesClosed.SetActive(m_EyeState == EyeState.EyesClosed);
+        m_EyesSquint.SetActive(m_EyeState == EyeState.EyesSquint);
+        m_EyesDead.SetActive(m_EyeState == EyeState.EyesDead);
+    }
+
+    public void Alive()
+    {
+        m_EyeState = EyeState.EyesOpen;
+        m_BlinkTimer = 0.0f;
+        m_SquintTimer = 0.0f;
+    }
+
+    public void Dead()
+    {
+        m_EyeState = EyeState.EyesDead;
+        m_BlinkTimer = 0.0f;
+        m_SquintTimer = 0.0f;
+    }
+
+    public void Squint()
+    {
+        if (m_EyeState != EyeState.EyesDead)
+        {
+            m_BlinkTimer = 0.0f;
+            m_SquintTimer = 1.0f;
+        }
+    }
+
+    public void Blink()
+    {
+        if (m_EyeState != EyeState.EyesDead)
+        {
+            m_SquintTimer = 0.0f;
+            m_BlinkTimer = 1.0f;
         }
     }
 

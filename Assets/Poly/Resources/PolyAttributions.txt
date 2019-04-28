@@ -24,6 +24,36 @@ URL: https://poly.google.com/view/091Ob4Lx8HB
 License: Creative Commons CC-BY
 https://creativecommons.org/licenses/by/3.0/legalcode
 
+Title: Eyes Closed
+Author: Mach Kobayashi
+URL: https://poly.google.com/view/2lhURwVdMDz
+License: Creative Commons CC-BY
+https://creativecommons.org/licenses/by/3.0/legalcode
+
+Title: Eyes Dead
+Author: Mach Kobayashi
+URL: https://poly.google.com/view/5LfF1tOoeP7
+License: Creative Commons CC-BY
+https://creativecommons.org/licenses/by/3.0/legalcode
+
+Title: Eyes Open
+Author: Mach Kobayashi
+URL: https://poly.google.com/view/1RCTcoE3Mgg
+License: Creative Commons CC-BY
+https://creativecommons.org/licenses/by/3.0/legalcode
+
+Title: Eyes Open
+Author: Mach Kobayashi
+URL: https://poly.google.com/view/e_Il4oX8FlQ
+License: Creative Commons CC-BY
+https://creativecommons.org/licenses/by/3.0/legalcode
+
+Title: Eyes Squint
+Author: Mach Kobayashi
+URL: https://poly.google.com/view/0I9Ccc4A_0P
+License: Creative Commons CC-BY
+https://creativecommons.org/licenses/by/3.0/legalcode
+
 Title: Foot
 Author: Mach Kobayashi
 URL: https://poly.google.com/view/8YAX9Fa8Yjw
@@ -33,12 +63,6 @@ https://creativecommons.org/licenses/by/3.0/legalcode
 Title: Lofted
 Author: Jeremy Cowles
 URL: https://poly.google.com/view/2qm18XCW3N9
-License: Creative Commons CC-BY
-https://creativecommons.org/licenses/by/3.0/legalcode
-
-Title: Lofted
-Author: Jeremy Cowles
-URL: https://poly.google.com/view/aWiJCv74Pa8
 License: Creative Commons CC-BY
 https://creativecommons.org/licenses/by/3.0/legalcode
 
