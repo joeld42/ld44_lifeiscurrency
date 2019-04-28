@@ -537,6 +537,8 @@ GameObject:
   - component: {fileID: 9016499868046223209}
   - component: {fileID: 9016499868046223212}
   - component: {fileID: 2121658557100491475}
+  - component: {fileID: 2059450875709954180}
+  - component: {fileID: 2193338141453402055}
   m_Layer: 0
   m_Name: SpherePig
   m_TagString: Untagged
@@ -575,6 +577,9 @@ MonoBehaviour:
   upforce: {x: 0, y: 400}
   sideforce: {x: 40, y: 0}
   speedLimit: {x: 2, y: 4}
+  squealClip: {fileID: 8300000, guid: 1ca183c117705384f8ab5a837c26313a, type: 3}
+  wingFlap: {fileID: 8300000, guid: eb7008ae25bc6f1428af45d0c1d5d381, type: 3}
+  grunt: {fileID: 8300000, guid: 66ab4150f79b5c34db7a2fa11e150167, type: 3}
   rotationCorrectionSpeed: 0.05
   minMass: 6
   coinMass: 0.5
@@ -661,6 +666,114 @@ MonoBehaviour:
   m_Tail: {fileID: 32030459870330663}
   m_CoinVisualPrefab: {fileID: 2665857717687905056, guid: 8afdf50e55e844c61a2b809b4bc43987,
     type: 3}
+--- !u!82 &2059450875709954180
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9016499868046223219}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &2193338141453402055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9016499868046223219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8576037a55d2b52429f32f1e0808a62d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &491407213574558563
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1290,16 +1403,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5162812925471539286}
     m_Modifications:
-    - target: {fileID: 4386095781688485606, guid: f3920f0a22411464b8d096ee8ea0048a,
-        type: 3}
-      propertyPath: m_Name
-      value: Eyes_Closed_Mach_Kobayashi_2lhURwVdMDz
-      objectReference: {fileID: 0}
-    - target: {fileID: 4386095781688485606, guid: f3920f0a22411464b8d096ee8ea0048a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5000549526446794682, guid: f3920f0a22411464b8d096ee8ea0048a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1353,6 +1456,16 @@ PrefabInstance:
     - target: {fileID: 5000549526446794682, guid: f3920f0a22411464b8d096ee8ea0048a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4386095781688485606, guid: f3920f0a22411464b8d096ee8ea0048a,
+        type: 3}
+      propertyPath: m_Name
+      value: Eyes_Closed_Mach_Kobayashi_2lhURwVdMDz
+      objectReference: {fileID: 0}
+    - target: {fileID: 4386095781688485606, guid: f3920f0a22411464b8d096ee8ea0048a,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

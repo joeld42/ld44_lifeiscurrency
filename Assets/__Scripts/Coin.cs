@@ -29,6 +29,7 @@ public class Coin : MonoBehaviour, IChangeScore
 
     public void ChangeScore(PigController pig)
     {
+        AudioPlayer.PlayClip(GetComponent<AudioSource>().clip, .8f);
         pig.ChangeCoinCount( 1 );
         Destroy(gameObject);
     }

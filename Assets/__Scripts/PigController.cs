@@ -17,6 +17,9 @@ public class PigController : MonoBehaviour
     public Vector2 upforce = new Vector2(0,400);
     public Vector2 sideforce = new Vector2(40,0);
     public Vector2 speedLimit = new Vector2(2,4);
+    public AudioClip squealClip;
+    public AudioClip wingFlap;
+    public AudioClip grunt;
 
     public float rotationCorrectionSpeed = 0.5f;
 
@@ -79,6 +82,7 @@ public class PigController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump"))
         {
+            AudioPlayer.PlayClip(wingFlap);
             rigidbody.AddForce(upforce * minMass, forceMode);
         }
 
@@ -105,11 +109,13 @@ public class PigController : MonoBehaviour
         var cage = other.GetComponent<Cage>();
         if (cage) {
             m_PigAnimation.Squint();
+            AudioPlayer.PlayClip(squealClip);
             cage.Break();
             ChangeCoinCount(-2);
         }
         var fruit = other.GetComponent<Fruit>();
         if (fruit) {
+            AudioPlayer.PlayClip(grunt);
             m_PigAnimation.Blink();
             fruit.Eat();
             boost += .6f;

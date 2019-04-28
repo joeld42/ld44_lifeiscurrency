@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class CageRoot : MonoBehaviour
 {
+    public AudioClip cageBreak;
     float rotateAmount = 0;
     Vector3 angles;
+
+    public void Break() {
+        AudioPlayer.PlayClip(cageBreak);
+        Destroy(gameObject);
+    }
 
     private void Start() {
         angles = transform.root.localEulerAngles;
