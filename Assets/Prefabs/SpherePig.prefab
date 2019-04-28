@@ -23,7 +23,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1602246835}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: -0.5735764, z: 0, w: 0.8191521}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 12, y: 12, z: 12}
   m_Children:
@@ -516,7 +516,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9016499868046223219}
-  m_LocalRotation: {x: 0, y: 0.9109718, z: 0, w: 0.4124686}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.191964, y: 2.0890703, z: 0.025582362}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -540,14 +540,22 @@ MonoBehaviour:
   upforce: {x: 0, y: 400}
   sideforce: {x: 40, y: 0}
   speedLimit: {x: 2, y: 4}
+  rotationCorrectionSpeed: 0.05
   minMass: 6
   coinMass: 0.5
   airDensity: 1
   waterDensity: 1000
+  dragCoefficient: 0.47
+  waterHeight: -4
+  volume: 0
+  area: 0
+  density: 0
+  inWater: 0
+  fullySubmerged: 0
   buoyancyForce: {x: 0, y: 0}
+  dragForce: {x: 0, y: 0}
   fullySubmergedForce: {x: 0, y: 0}
   fullyEmergedForce: {x: 0, y: 0}
-  waterHeight: -4
   coinCount: 20
   fireCoolDown: 0
   bulletPrefab: {fileID: 5852307454140557781, guid: 69b6e56e0f3ee4356a601dd7bd7c40f2,
@@ -617,11 +625,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7882052517718637005}
     m_Modifications:
-    - target: {fileID: 3007098695790703981, guid: 7136e93391ddc44a08716db43d84674b,
-        type: 3}
-      propertyPath: m_Name
-      value: Foot_Mach_Kobayashi_8YAX9Fa8Yjw
-      objectReference: {fileID: 0}
     - target: {fileID: 1816667160610204343, guid: 7136e93391ddc44a08716db43d84674b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -691,6 +694,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3007098695790703981, guid: 7136e93391ddc44a08716db43d84674b,
+        type: 3}
+      propertyPath: m_Name
+      value: Foot_Mach_Kobayashi_8YAX9Fa8Yjw
       objectReference: {fileID: 0}
     - target: {fileID: 6417844218195524041, guid: 7136e93391ddc44a08716db43d84674b,
         type: 3}
@@ -712,11 +720,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9113944895908037881}
     m_Modifications:
-    - target: {fileID: 3007098695790703981, guid: 7136e93391ddc44a08716db43d84674b,
-        type: 3}
-      propertyPath: m_Name
-      value: Foot_Mach_Kobayashi_8YAX9Fa8Yjw
-      objectReference: {fileID: 0}
     - target: {fileID: 1816667160610204343, guid: 7136e93391ddc44a08716db43d84674b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -786,6 +789,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3007098695790703981, guid: 7136e93391ddc44a08716db43d84674b,
+        type: 3}
+      propertyPath: m_Name
+      value: Foot_Mach_Kobayashi_8YAX9Fa8Yjw
       objectReference: {fileID: 0}
     - target: {fileID: 6417844218195524041, guid: 7136e93391ddc44a08716db43d84674b,
         type: 3}
@@ -807,11 +815,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4265686780219273980}
     m_Modifications:
-    - target: {fileID: 3007098695790703981, guid: 7136e93391ddc44a08716db43d84674b,
-        type: 3}
-      propertyPath: m_Name
-      value: Foot_Mach_Kobayashi_8YAX9Fa8Yjw
-      objectReference: {fileID: 0}
     - target: {fileID: 1816667160610204343, guid: 7136e93391ddc44a08716db43d84674b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -882,6 +885,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3007098695790703981, guid: 7136e93391ddc44a08716db43d84674b,
+        type: 3}
+      propertyPath: m_Name
+      value: Foot_Mach_Kobayashi_8YAX9Fa8Yjw
+      objectReference: {fileID: 0}
     - target: {fileID: 6417844218195524041, guid: 7136e93391ddc44a08716db43d84674b,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -902,11 +910,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2031426921694270614}
     m_Modifications:
-    - target: {fileID: 9084345633483824929, guid: da2577b4e461c4bdfbf1cf5e362c1fba,
-        type: 3}
-      propertyPath: m_Name
-      value: Wing_Mach_Kobayashi_bcy4kTYXvvd
-      objectReference: {fileID: 0}
     - target: {fileID: 1949464913961519896, guid: da2577b4e461c4bdfbf1cf5e362c1fba,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -976,6 +979,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9084345633483824929, guid: da2577b4e461c4bdfbf1cf5e362c1fba,
+        type: 3}
+      propertyPath: m_Name
+      value: Wing_Mach_Kobayashi_bcy4kTYXvvd
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da2577b4e461c4bdfbf1cf5e362c1fba, type: 3}
@@ -992,11 +1000,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5619237564526244093}
     m_Modifications:
-    - target: {fileID: 9084345633483824929, guid: da2577b4e461c4bdfbf1cf5e362c1fba,
-        type: 3}
-      propertyPath: m_Name
-      value: Wing_Mach_Kobayashi_bcy4kTYXvvd
-      objectReference: {fileID: 0}
     - target: {fileID: 1949464913961519896, guid: da2577b4e461c4bdfbf1cf5e362c1fba,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1067,6 +1070,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9084345633483824929, guid: da2577b4e461c4bdfbf1cf5e362c1fba,
+        type: 3}
+      propertyPath: m_Name
+      value: Wing_Mach_Kobayashi_bcy4kTYXvvd
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da2577b4e461c4bdfbf1cf5e362c1fba, type: 3}
 --- !u!4 &7191625132233516749 stripped
@@ -1082,11 +1090,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1602246836}
     m_Modifications:
-    - target: {fileID: 1295980272658361502, guid: 0897381d179d04c22ba9eab0d6476711,
-        type: 3}
-      propertyPath: m_Name
-      value: Eyes_Mach_Kobayashi_091Ob4Lx8HB
-      objectReference: {fileID: 0}
     - target: {fileID: 5900918140626271789, guid: 0897381d179d04c22ba9eab0d6476711,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1142,6 +1145,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1295980272658361502, guid: 0897381d179d04c22ba9eab0d6476711,
+        type: 3}
+      propertyPath: m_Name
+      value: Eyes_Mach_Kobayashi_091Ob4Lx8HB
+      objectReference: {fileID: 0}
     - target: {fileID: 398081639888118022, guid: 0897381d179d04c22ba9eab0d6476711,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1162,11 +1170,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1731431203398264585}
     m_Modifications:
-    - target: {fileID: 3007098695790703981, guid: 7136e93391ddc44a08716db43d84674b,
-        type: 3}
-      propertyPath: m_Name
-      value: Foot_Mach_Kobayashi_8YAX9Fa8Yjw
-      objectReference: {fileID: 0}
     - target: {fileID: 1816667160610204343, guid: 7136e93391ddc44a08716db43d84674b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1236,6 +1239,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3007098695790703981, guid: 7136e93391ddc44a08716db43d84674b,
+        type: 3}
+      propertyPath: m_Name
+      value: Foot_Mach_Kobayashi_8YAX9Fa8Yjw
       objectReference: {fileID: 0}
     - target: {fileID: 6417844218195524041, guid: 7136e93391ddc44a08716db43d84674b,
         type: 3}
@@ -1331,11 +1339,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6729349780522254671}
     m_Modifications:
-    - target: {fileID: 7385867606702435886, guid: 5ef3cff3d90534034bd5ddd43641afeb,
-        type: 3}
-      propertyPath: m_Name
-      value: Tail_Mach_Kobayashi_5XalWNzsx_6
-      objectReference: {fileID: 0}
     - target: {fileID: 5782192031298101814, guid: 5ef3cff3d90534034bd5ddd43641afeb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1406,6 +1409,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7385867606702435886, guid: 5ef3cff3d90534034bd5ddd43641afeb,
+        type: 3}
+      propertyPath: m_Name
+      value: Tail_Mach_Kobayashi_5XalWNzsx_6
+      objectReference: {fileID: 0}
     - target: {fileID: 7256484893155027296, guid: 5ef3cff3d90534034bd5ddd43641afeb,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1426,16 +1434,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1602246836}
     m_Modifications:
-    - target: {fileID: 987773512893701809, guid: 216308b4dcf6e4e4099b8ce2a360b926,
-        type: 3}
-      propertyPath: m_Name
-      value: Body_Mach_Kobayashi_73FFHy67wRP
-      objectReference: {fileID: 0}
-    - target: {fileID: 987773512893701809, guid: 216308b4dcf6e4e4099b8ce2a360b926,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2338827243890513938, guid: 216308b4dcf6e4e4099b8ce2a360b926,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1491,6 +1489,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 987773512893701809, guid: 216308b4dcf6e4e4099b8ce2a360b926,
+        type: 3}
+      propertyPath: m_Name
+      value: Body_Mach_Kobayashi_73FFHy67wRP
+      objectReference: {fileID: 0}
+    - target: {fileID: 987773512893701809, guid: 216308b4dcf6e4e4099b8ce2a360b926,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2936739202399510425, guid: 216308b4dcf6e4e4099b8ce2a360b926,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1511,11 +1519,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3126839080635858642}
     m_Modifications:
-    - target: {fileID: 4156917837690062099, guid: 0ed3fd059e4314e3498c319a73f316f1,
-        type: 3}
-      propertyPath: m_Name
-      value: Snout_Mach_Kobayashi_8GyFPyzbn_y
-      objectReference: {fileID: 0}
     - target: {fileID: 3314991081133388881, guid: 0ed3fd059e4314e3498c319a73f316f1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1585,6 +1588,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4156917837690062099, guid: 0ed3fd059e4314e3498c319a73f316f1,
+        type: 3}
+      propertyPath: m_Name
+      value: Snout_Mach_Kobayashi_8GyFPyzbn_y
       objectReference: {fileID: 0}
     - target: {fileID: 1396886748697044290, guid: 0ed3fd059e4314e3498c319a73f316f1,
         type: 3}

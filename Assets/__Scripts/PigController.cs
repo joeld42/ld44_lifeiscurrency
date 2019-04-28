@@ -18,6 +18,8 @@ public class PigController : MonoBehaviour
     public Vector2 sideforce = new Vector2(40,0);
     public Vector2 speedLimit = new Vector2(2,4);
 
+    public float rotationCorrectionSpeed = 0.5f;
+
     public float minMass = 6f, coinMass = 0.5f;
 
     [Header("Buoyancy")]
@@ -114,6 +116,19 @@ public class PigController : MonoBehaviour
         CalculateForces();
         rigidbody.AddForce(buoyancyForce);
         rigidbody.AddForce(dragForce);
+
+        if (rotationCorrectionSpeed != 0)
+        {
+            float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, 0, rotationCorrectionSpeed * Time.fixedDeltaTime);
+            rigidbody.MoveRotation(angle);
+        }
+
+        // // Get the local angular velocity
+        
+        // // Calculate damping torques based on that angular velocity and apply it in the opposite direction (negative)
+        // float dampingTorque = rigidbody.angularVelocity * -dampingCoefficient;
+        
+        // rigidbody.AddTorque(dampingTorque);
     }
 
     public void onPlayAgain()
