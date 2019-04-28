@@ -89,6 +89,10 @@ public class PigController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        var cage = other.GetComponent<Cage>();
+        if (cage) {
+            cage.Break();
+        } 
         if (other.gameObject.tag == "Coin")
         {
             IChangeScore coin = other.gameObject.GetComponent<IChangeScore>();
