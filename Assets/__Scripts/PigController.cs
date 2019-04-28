@@ -95,6 +95,9 @@ public class PigController : MonoBehaviour
             GameGlobals.instance.TriggerGameOver();
         }
         boost = Mathf.Max(0, boost - .01f * Time.deltaTime);
+
+        // drag the pig upright
+        transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.identity, 0.1f);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
