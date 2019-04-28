@@ -26,6 +26,7 @@ public class PigController : MonoBehaviour
     public float airDensity = 1;
     public float waterDensity = 100;
     public float dragCoefficient = 0.47f;
+    public float waterDragScale = 1;
     public float waterHeight = 0;
 
     [Header("Buoyancy Debug")]
@@ -194,9 +195,9 @@ public class PigController : MonoBehaviour
         else if (fullySubmerged)
         {
             buoyancyForce = fullySubmergedForce;            
-            //dragForce *= waterDensity;
+            dragForce *= waterDensity *  waterDragScale;
         } else {
-            //dragForce *= waterDensity;
+            dragForce *= waterDensity * waterDragScale;
 
             float asq = 2 * radius * h - h * h;
             float submergedVolume = ((Mathf.PI * h)/ 6.0f)*(3*asq+h*h);

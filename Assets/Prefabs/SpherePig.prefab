@@ -544,9 +544,10 @@ MonoBehaviour:
   minMass: 6
   coinMass: 0.5
   airDensity: 1
-  waterDensity: 1000
+  waterDensity: 23.41
   dragCoefficient: 0.47
-  waterHeight: -4
+  waterDragScale: 1
+  waterHeight: -4.3
   volume: 0
   area: 0
   density: 0
