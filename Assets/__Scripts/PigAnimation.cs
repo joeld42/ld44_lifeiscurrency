@@ -57,7 +57,7 @@ public class PigAnimation : MonoBehaviour
     private List<GameObject> m_Coins;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         m_PigController = GetComponent<PigController>();
         GameGlobals.OnGameOver += GameOver;
@@ -210,9 +210,9 @@ public class PigAnimation : MonoBehaviour
             while (m_CoinCount < coinCountTarget)
             {
                 GameObject coin = Instantiate(m_CoinVisualPrefab, transform);
-                Vector3 pilePosition = Mathf.Pow(.008f * m_CoinCount, .2f) * Random.insideUnitSphere;
+                Vector3 pilePosition = Mathf.Pow(.008f * m_CoinCount, .2f) * Random.onUnitSphere;
                 pilePosition.y = 0.8f * Mathf.Abs(pilePosition.y);
-                coin.transform.localPosition = new Vector3(0, 0.8f, 0) + pilePosition;
+                coin.transform.localPosition = new Vector3(0, 0.75f, 0) + pilePosition;
                 m_Coins.Add(coin);
                 m_CoinCount++;
             }

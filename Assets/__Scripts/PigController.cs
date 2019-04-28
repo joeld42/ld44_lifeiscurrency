@@ -59,14 +59,19 @@ public class PigController : MonoBehaviour
     public float boost;
     public Vector2 Velocity => rigidbody.velocity;
 
-    void Start()
+    private void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
         collider = GetComponent<CircleCollider2D>();
-        RecalculateMass();
-
         m_PigAnimation = GetComponent<PigAnimation>();
     }
+
+    void Start()
+    {
+        RecalculateMass();
+        OnCoinCountChanged?.Invoke(coinCount);
+    }
+
     void Update()
     {
 
