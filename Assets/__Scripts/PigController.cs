@@ -92,7 +92,12 @@ public class PigController : MonoBehaviour
         var cage = other.GetComponent<Cage>();
         if (cage) {
             cage.Break();
-        } 
+            ChangeCoinCount(-1);
+        }
+        var fruit = other.GetComponent<Fruit>();
+        if (fruit) {
+            fruit.Eat();
+        }
         if (other.gameObject.tag == "Coin")
         {
             IChangeScore coin = other.gameObject.GetComponent<IChangeScore>();
