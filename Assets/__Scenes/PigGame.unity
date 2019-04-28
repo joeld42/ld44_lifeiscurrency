@@ -1362,6 +1362,26 @@ PrefabInstance:
       propertyPath: coinCount
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 9016499868046223208, guid: abae58425c4974cbe88033178e1924e8,
+        type: 3}
+      propertyPath: dragCoefficient
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9016499868046223208, guid: abae58425c4974cbe88033178e1924e8,
+        type: 3}
+      propertyPath: sideforce.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 9016499868046223208, guid: abae58425c4974cbe88033178e1924e8,
+        type: 3}
+      propertyPath: speedLimit.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9016499868046223208, guid: abae58425c4974cbe88033178e1924e8,
+        type: 3}
+      propertyPath: speedLimit.y
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6188067269422923742, guid: abae58425c4974cbe88033178e1924e8,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
