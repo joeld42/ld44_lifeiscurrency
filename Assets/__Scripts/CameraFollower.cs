@@ -20,7 +20,6 @@ public class CameraFollower : MonoBehaviour
     {
         m_Camera = GetComponent<Camera>();
         GameGlobals.OnGameRestart += GameRestart;
-        //SceneryLoader.OnLevelLoad += LevelLoad;
         m_StartTime = Time.time;
 
         m_InitialPosition = transform.localPosition;
@@ -30,7 +29,6 @@ public class CameraFollower : MonoBehaviour
     private void OnDestroy()
     {
         GameGlobals.OnGameRestart -= GameRestart;
-        //SceneryLoader.OnLevelLoad -= LevelLoad;
     }
 
     // Update is called once per frame
