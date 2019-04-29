@@ -5,20 +5,32 @@ using UnityEngine;
 public class CameraFollower : MonoBehaviour
 {
     public Transform target;
-    Camera camera;
+    Camera m_Camera;
 
     [Tooltip("Follow margin as % of screen size"), Range(0f, 1f)]
     public float margin = 0.25f;
 
     private bool m_RestartingGame;
     private float m_StartTime;
+    private Vector3 m_InitialPosition;
+    private Quaternion m_InitialRotation;
     
     // Start is called before the first frame update
     void Start()
     {
-        camera = GetComponent<Camera>();
+        m_Camera = GetComponent<Camera>();
         GameGlobals.OnGameRestart += GameRestart;
+        SceneryLoader.OnLevelLoad += LevelLoad;
         m_StartTime = Time.time;
+
+        m_InitialPosition = transform.localPosition;
+        m_InitialRotation = transform.localRotation;
+    }
+
+    private void OnDestroy()
+    {
+        GameGlobals.OnGameRestart -= GameRestart;
+        SceneryLoader.OnLevelLoad -= LevelLoad;
     }
 
     // Update is called once per frame
@@ -32,7 +44,7 @@ public class CameraFollower : MonoBehaviour
         }
         else
         {
-            Vector3 screenPos = camera.WorldToScreenPoint(target.position);
+            Vector3 screenPos = m_Camera.WorldToScreenPoint(target.position);
 
             if (screenPos.x < 0f && !GameGlobals.instance.isGameOver)
             {
@@ -49,12 +61,18 @@ public class CameraFollower : MonoBehaviour
             minSpeed *= Mathf.SmoothStep(0.0f, 1.0f, (Time.time - m_StartTime) / 3.0f - 1.0f);
 
             moveAmt = Mathf.Clamp(moveAmt, minSpeed, marginPx);
-            camera.transform.position += Vector3.right * Time.deltaTime * moveAmt;
+            m_Camera.transform.position += Vector3.right * Time.deltaTime * moveAmt;
         }
     }
 
     void GameRestart()
     {
         m_RestartingGame = true;
+    }
+
+    private void LevelLoad()
+    {
+        transform.localPosition = m_InitialPosition;
+        transform.localRotation = m_InitialRotation;
     }
 }
