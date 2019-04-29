@@ -22,6 +22,7 @@ public class PigAnimation : MonoBehaviour
 
     [Header("Items")]
     [SerializeField] private CoinVisualAnimation m_CoinVisualPrefab;
+    [SerializeField] private TMPro.TextMeshPro m_CoinCounterText;
 
     enum EyeState
     {
@@ -55,6 +56,9 @@ public class PigAnimation : MonoBehaviour
 
     private int m_CoinCount;
     private List<CoinVisualAnimation> m_Coins;
+    private float m_CoinCounterTimer;
+    const float m_CoinCounterSpeed = 2.0f;
+    private Vector3 m_CoinCounterInitialPosition;
 
     // Start is called before the first frame update
     void Awake()
@@ -64,6 +68,7 @@ public class PigAnimation : MonoBehaviour
         GameGlobals.OnGameRestart += GameRestart;
         m_PigController.OnCoinCountChanged += CoinCountChanged;
         m_Coins = new List<CoinVisualAnimation>();
+        m_CoinCounterInitialPosition = m_CoinCounterText.rectTransform.localPosition;
     }
 
     private void OnDestroy()
@@ -163,6 +168,25 @@ public class PigAnimation : MonoBehaviour
         m_EyesClosed.SetActive(m_EyeState == EyeState.EyesClosed);
         m_EyesSquint.SetActive(m_EyeState == EyeState.EyesSquint);
         m_EyesDead.SetActive(m_EyeState == EyeState.EyesDead);
+
+        // coin counter text
+        if (m_CoinCounterTimer > 0)
+        {
+            // keep coin counter stable
+            m_CoinCounterText.transform.rotation = Quaternion.identity;
+
+            m_CoinCounterTimer -= m_CoinCounterSpeed * Time.deltaTime;
+            if (m_CoinCounterTimer < 0)
+            {
+                m_CoinCounterTimer = 0;
+            }
+
+            Color textColor = m_CoinCounterText.color;
+            textColor.a = Mathf.SmoothStep(0.0f, 1.0f, m_CoinCounterTimer);
+            m_CoinCounterText.color = textColor;
+            m_CoinCounterText.rectTransform.localPosition = m_CoinCounterInitialPosition +
+                1.0f * (1.0f - m_CoinCounterTimer) * (m_CoinCounterText.transform.localRotation * Vector3.up);
+        }
     }
 
     public void Squint()
@@ -222,6 +246,8 @@ public class PigAnimation : MonoBehaviour
             m_Coins.RemoveAt(m_CoinCount);
             Object.Destroy(coinObject);
         }
+        m_CoinCounterTimer = 1.0f;
+        m_CoinCounterText.text = m_CoinCount.ToString();
     }
 
     void CoinCountChanged(int coinCountTarget)
@@ -240,6 +266,7 @@ public class PigAnimation : MonoBehaviour
                 m_Coins.Add(coin);
                 m_CoinCount++;
             }
+            m_CoinCounterTimer = 1.0f;
         }
         else if (coinCountTarget < m_CoinCount)
         {
@@ -250,6 +277,9 @@ public class PigAnimation : MonoBehaviour
                 m_Coins[m_CoinCount].Detach(m_PigController.Velocity);
                 m_Coins.RemoveAt(m_CoinCount);
             }
+            m_CoinCounterTimer = 1.0f;
         }
+
+        m_CoinCounterText.text = m_CoinCount.ToString();
     }
 }
