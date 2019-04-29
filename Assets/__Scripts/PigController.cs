@@ -184,6 +184,7 @@ public class PigController : MonoBehaviour
             bullet.velocity = rigidbody.velocity + new Vector2(8, 0);
             fireCoolDown = 0.5f;
 
+            m_PigAnimation.TransferCoins(1);
             ChangeCoinCount(-1);
         }
     }

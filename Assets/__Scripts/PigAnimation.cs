@@ -21,7 +21,7 @@ public class PigAnimation : MonoBehaviour
     [SerializeField] private GameObject m_Tail;
 
     [Header("Items")]
-    [SerializeField] private GameObject m_CoinVisualPrefab;
+    [SerializeField] private CoinVisualAnimation m_CoinVisualPrefab;
 
     enum EyeState
     {
@@ -54,7 +54,7 @@ public class PigAnimation : MonoBehaviour
     const float m_LegSwingRange = 60.0f;
 
     private int m_CoinCount;
-    private List<GameObject> m_Coins;
+    private List<CoinVisualAnimation> m_Coins;
 
     // Start is called before the first frame update
     void Awake()
@@ -63,7 +63,7 @@ public class PigAnimation : MonoBehaviour
         GameGlobals.OnGameOver += GameOver;
         GameGlobals.OnGameRestart += GameRestart;
         m_PigController.OnCoinCountChanged += CoinCountChanged;
-        m_Coins = new List<GameObject>();
+        m_Coins = new List<CoinVisualAnimation>();
     }
 
     // Update is called once per frame
@@ -202,6 +202,21 @@ public class PigAnimation : MonoBehaviour
         m_SquintTimer = 0.0f;
     }
 
+    // This function assumes that the coins are transferred to a different
+    // owner so doesn't do the visual animation of the coins popping off
+    // the pile
+    public void TransferCoins(int coinTransferCount)
+    {
+        for (int i = 0; i < coinTransferCount; i++)
+        {
+            m_CoinCount--;
+            GameObject coinObject = m_Coins[m_CoinCount].gameObject;
+            coinObject.SetActive(false);
+            m_Coins.RemoveAt(m_CoinCount);
+            Object.Destroy(coinObject);
+        }
+    }
+
     void CoinCountChanged(int coinCountTarget)
     {
         if (coinCountTarget > m_CoinCount)
@@ -209,10 +224,12 @@ public class PigAnimation : MonoBehaviour
             // add coins
             while (m_CoinCount < coinCountTarget)
             {
-                GameObject coin = Instantiate(m_CoinVisualPrefab, transform);
+                CoinVisualAnimation coin = Instantiate(m_CoinVisualPrefab, transform);
                 Vector3 pilePosition = Mathf.Pow(.008f * m_CoinCount, .2f) * Random.onUnitSphere;
                 pilePosition.y = 0.8f * Mathf.Abs(pilePosition.y);
-                coin.transform.localPosition = new Vector3(0, 0.75f, 0) + pilePosition;
+                coin.transform.localPosition = new Vector3(0, .75f, 0);
+                coin.SetTargetPosition(new Vector3(0, 0.75f, 0) + pilePosition);
+
                 m_Coins.Add(coin);
                 m_CoinCount++;
             }
@@ -223,7 +240,7 @@ public class PigAnimation : MonoBehaviour
             while (m_CoinCount > coinCountTarget && m_CoinCount > 0)
             {
                 m_CoinCount--;
-                Object.Destroy(m_Coins[m_CoinCount]);
+                m_Coins[m_CoinCount].Detach(m_PigController.Velocity);
                 m_Coins.RemoveAt(m_CoinCount);
             }
         }
