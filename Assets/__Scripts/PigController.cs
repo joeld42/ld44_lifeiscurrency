@@ -91,9 +91,11 @@ public class PigController : MonoBehaviour
             FireCoin();
         }
 
-        if (rigidbody.velocity.x * Mathf.Sign(Input.GetAxis("Horizontal")) < speedLimit.x)
+        float thrustDirection = Mathf.Sign(Input.GetAxis("Horizontal"));
+        if (rigidbody.velocity.x * thrustDirection < speedLimit.x)
         {
-            rigidbody.AddForce(sideforce * minMass * Input.GetAxis("Horizontal"), forceMode);
+            float thrustFactor = 1.0f - rigidbody.velocity.x * thrustDirection / speedLimit.x;
+            rigidbody.AddForce(thrustFactor * sideforce * minMass * Input.GetAxis("Horizontal"), forceMode);
         }
 
         // Check if we fell off the world
