@@ -5,10 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneryLoader : MonoBehaviour
 {
-
-    // TODO: make this pick levels more smarter
-    public string levelName;
-
+    public string startingLevel;
     public List<AudioClip> backgroundTracks;
 
     // Start is called before the first frame update
@@ -17,21 +14,13 @@ public class SceneryLoader : MonoBehaviour
 
         PlayRandomBackgroundMusic();
 
-        // is a Level already loaded? if so, use it
-        for (int n = 0; n < SceneManager.sceneCount; ++n)
-        {
-            Scene scene = SceneManager.GetSceneAt(n);
-            if (scene != null && scene.isLoaded && scene.name.StartsWith("Level")) 
-            {
-                Debug.LogFormat("Scene [{0}] {1} buildIndex:{2} already loaded", n, scene.name, scene.buildIndex, this) ;
-                if (scene.buildIndex < 0) Debug.LogError(scene.name+" is not in Build Settings. It will not ship.");
-                levelName = scene.name;
-                return;
-            }
-        }
 
-        // SceneManager.LoadScene(levelName, LoadSceneMode.Additive);
-        LoadLevel(levelName);
+        string levelToLoad = startingLevel;
+        if (GameGlobals.instance.nextLevelToLoad.Length > 0)
+        {
+            levelToLoad = GameGlobals.instance.nextLevelToLoad;
+        }
+        LoadLevel(levelToLoad);
 
        
     }
@@ -55,24 +44,23 @@ public class SceneryLoader : MonoBehaviour
 
     public void LoadLevel(string sceneName)
     {
-        if (levelName != null)
-        {            
-            Scene scene = SceneManager.GetSceneByName(levelName);
-            if (scene != null && scene.isLoaded)
+    
+        // Unload any loaded levels
+        for (int n = 0; n < SceneManager.sceneCount; ++n)
+        {
+            Scene scene = SceneManager.GetSceneAt(n);
+            if (scene != null && scene.isLoaded && scene.name.StartsWith("Level"))
             {
-                SceneManager.UnloadSceneAsync(levelName);
+                Debug.LogFormat("Unloading level {0}", scene.name);
+                SceneManager.UnloadSceneAsync( scene );
             }
         }
-        levelName = sceneName;
-        SceneManager.LoadScene(levelName, LoadSceneMode.Additive);
+        Debug.Log("Loading scenery level {0}");
+        SceneManager.LoadScene( sceneName, LoadSceneMode.Additive);
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            LoadLevel("Level_1");
-        }
     }
 
 

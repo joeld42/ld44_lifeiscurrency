@@ -91,6 +91,12 @@ public class PigController : MonoBehaviour
             FireCoin();
         }
 
+        // Cheat
+        if (Input.GetKeyDown("p"))
+        {
+            transform.position = new Vector3(177f, 1.3f, 0f);
+        }
+
         float thrustDirection = Mathf.Sign(Input.GetAxis("Horizontal"));
         if (rigidbody.velocity.x * thrustDirection < speedLimit.x)
         {

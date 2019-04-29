@@ -14,6 +14,8 @@ public class GameGlobals : MonoBehaviour
 
     public bool isGameOver = false;
 
+    public string nextLevelToLoad;
+
     void Awake()
     {
 
@@ -42,10 +44,17 @@ public class GameGlobals : MonoBehaviour
         OnGameRestart?.Invoke();
     }
 
+    public void RestartAndLoadLevel( string levelToLoad )
+    {
+        nextLevelToLoad = levelToLoad;
+        RestartGame();
+    }
+
     public void TriggerGameOver()
     {
         Debug.Log("Triggering game over");
         isGameOver = true;
+        nextLevelToLoad = "";
         OnGameOver?.Invoke();
     }
 

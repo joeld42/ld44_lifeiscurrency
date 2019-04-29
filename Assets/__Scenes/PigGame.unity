@@ -1794,7 +1794,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a824ece0c20d33b4483f92c225dec3e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: Level_Blocky
+  startingLevel: Level_Tutorial
   backgroundTracks:
   - {fileID: 8300000, guid: d60933b6ca5aec54081a3501cc45babb, type: 3}
   - {fileID: 8300000, guid: 3e98a84d15fcf43469f2d4cc2c6b4f6d, type: 3}
@@ -2097,6 +2097,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGameOver: 0
+  nextLevelToLoad: 
 --- !u!4 &1867088604
 Transform:
   m_ObjectHideFlags: 0

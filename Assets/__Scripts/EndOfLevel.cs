@@ -28,7 +28,7 @@ public class EndOfLevel : MonoBehaviour
         {
             Debug.Log("EndOfLevel by "+other.name, this);
             Debug.Log("Loading level: " + nextLevel);
-            loader.LoadLevel(nextLevel);
+            GameGlobals.instance.RestartAndLoadLevel(nextLevel);
         }
     }
 }
