@@ -44,6 +44,8 @@ public class PigController : MonoBehaviour
 
 
     private PigAnimation m_PigAnimation;
+    private Vector3 m_InitialPosition;
+    private Quaternion m_InitialRotation;
 
     // TODO: Replace with a fancy coin-meter 
     [Header("Coins")]
@@ -67,12 +69,21 @@ public class PigController : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         collider = GetComponent<CircleCollider2D>();
         m_PigAnimation = GetComponent<PigAnimation>();
+        m_InitialPosition = transform.localPosition;
+        m_InitialRotation = transform.localRotation;
     }
 
     void Start()
     {
+        Debug.Log("STARTING PIG AGAIN");
         RecalculateMass();
         OnCoinCountChanged?.Invoke(coinCount);
+        SceneryLoader.OnLevelLoad += LevelLoad;
+    }
+
+    private void OnDestroy()
+    {
+        SceneryLoader.OnLevelLoad -= LevelLoad;
     }
 
     void Update()
@@ -149,9 +160,10 @@ public class PigController : MonoBehaviour
         rigidbody.AddForce(buoyancyForce);
     }
 
-    public void onPlayAgain()
+    void LevelLoad()
     {
-        GameGlobals.instance.RestartGame();
+        transform.localPosition = m_InitialPosition;
+        transform.localRotation = m_InitialRotation;
     }
 
     void FireCoin()

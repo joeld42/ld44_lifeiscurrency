@@ -8,6 +8,8 @@ public class SceneryLoader : MonoBehaviour
 
     // TODO: make this pick levels more smarter
     public string levelName;
+    public delegate void LevelLoadAction();
+    public static event LevelLoadAction OnLevelLoad;
 
     public List<AudioClip> backgroundTracks;
 
@@ -65,6 +67,7 @@ public class SceneryLoader : MonoBehaviour
         }
         levelName = sceneName;
         SceneManager.LoadScene(levelName, LoadSceneMode.Additive);
+        OnLevelLoad?.Invoke();
     }
 
     void Update()

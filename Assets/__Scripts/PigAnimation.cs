@@ -66,6 +66,13 @@ public class PigAnimation : MonoBehaviour
         m_Coins = new List<CoinVisualAnimation>();
     }
 
+    private void OnDestroy()
+    {
+        GameGlobals.OnGameOver -= GameOver;
+        GameGlobals.OnGameRestart -= GameRestart;
+        m_PigController.OnCoinCountChanged -= CoinCountChanged;
+    }
+
     // Update is called once per frame
     void Update()
     {
