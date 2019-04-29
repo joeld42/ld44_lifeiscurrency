@@ -23,6 +23,11 @@ public class TitleScreenController : MonoBehaviour
 
     public void OnPlayPressed()
     {
+        // Make sure to clear the game over flag
+        if (GameGlobals.instance != null)
+        {
+            GameGlobals.instance.isGameOver = false;
+        }
         SceneManager.LoadScene("PigGame");
     }
 }
