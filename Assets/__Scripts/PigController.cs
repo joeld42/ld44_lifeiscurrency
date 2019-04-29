@@ -129,7 +129,7 @@ public class PigController : MonoBehaviour
             AudioPlayer.PlayClip(grunt);
             m_PigAnimation.Blink();
             fruit.Eat();
-            rigidbody.AddForce(2.0f * sideforce * minMass, forceMode);
+            rigidbody.AddForce(5.0f * sideforce * minMass, forceMode);
         }
         if (other.gameObject.tag == "Coin")
         {

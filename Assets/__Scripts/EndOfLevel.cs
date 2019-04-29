@@ -27,6 +27,7 @@ public class EndOfLevel : MonoBehaviour
         if (other.gameObject.GetComponent<PigController>() != null)
         {
             Debug.Log("EndOfLevel by "+other.name, this);
+            Debug.Log("Loading level: " + nextLevel);
             loader.LoadLevel(nextLevel);
         }
     }
