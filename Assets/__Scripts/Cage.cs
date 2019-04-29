@@ -5,6 +5,7 @@ using UnityEngine;
 public class Cage : MonoBehaviour
 {
     public void Break() {
-        GetComponentInParent<CageRoot>().Break();
+        var cageRoot = GetComponentInParent<CageRoot>();
+        cageRoot?.Break();
     }
 }

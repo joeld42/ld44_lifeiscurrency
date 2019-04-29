@@ -28,7 +28,7 @@ public class PigController : MonoBehaviour
     [Header("Buoyancy")]
     public float airDensity = 1;
     public float waterDensity = 100;
-    public float dragCoefficient = 0.47f;
+    public float dragCoefficient = 0.995f;
     public float waterDragScale = 1;
     public float waterHeight = 0;
 
@@ -40,7 +40,7 @@ public class PigController : MonoBehaviour
     [SerializeField]
     bool inWater, fullySubmerged;
     [SerializeField]
-    private Vector2 buoyancyForce, dragForce, fullySubmergedForce, fullyEmergedForce;
+    private Vector2 buoyancyForce, fullySubmergedForce, fullyEmergedForce;
 
 
     private PigAnimation m_PigAnimation;
@@ -91,34 +91,43 @@ public class PigController : MonoBehaviour
             FireCoin();
         }
 
-        rigidbody.AddForce(sideforce * minMass * Input.GetAxis("Horizontal") * (1 + boost), forceMode);
+        if (rigidbody.velocity.x * Mathf.Sign(Input.GetAxis("Horizontal")) < speedLimit.x)
+        {
+            rigidbody.AddForce(sideforce * minMass * Input.GetAxis("Horizontal"), forceMode);
+        }
 
         // Check if we fell off the world
         if (transform.position.y < -5.0f)
         {
             GameGlobals.instance.TriggerGameOver();
         }
-        boost = Mathf.Max(0, boost - .01f * Time.deltaTime);
 
         // drag the pig upright
         transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.identity, 0.1f);
+
+        // add drag
+        rigidbody.velocity *= Mathf.Pow(dragCoefficient, Time.deltaTime * (inWater ? waterDensity : airDensity));
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         var cage = other.GetComponent<Cage>();
         if (cage) {
-            m_PigAnimation.Squint();
-            AudioPlayer.PlayClip(squealClip);
-            cage.Break();
-            ChangeCoinCount(-2);
+            var cageRoot = cage.GetComponentInParent<CageRoot>();
+            if (cageRoot && cageRoot.gameObject.activeSelf)
+            {
+                m_PigAnimation.Squint();
+                AudioPlayer.PlayClip(squealClip);
+                cage.Break();
+                ChangeCoinCount(-2);
+            }
         }
         var fruit = other.GetComponent<Fruit>();
         if (fruit) {
             AudioPlayer.PlayClip(grunt);
             m_PigAnimation.Blink();
             fruit.Eat();
-            boost += .6f;
+            rigidbody.AddForce(2.0f * sideforce * minMass, forceMode);
         }
         if (other.gameObject.tag == "Coin")
         {
@@ -134,35 +143,8 @@ public class PigController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        Vector2 v = rigidbody.velocity;
-        bool setV = false;
-        if (Mathf.Abs(v.x) > speedLimit.x) 
-        {
-            v.x = speedLimit.x * Mathf.Sign(v.x);
-            setV = true;
-        }
-        if (Mathf.Abs(v.y) > speedLimit.y)
-        {
-            v.y = speedLimit.x * Mathf.Sign(v.y);
-            setV = true;
-        }
-        if (setV) rigidbody.velocity = v;
         CalculateForces();
         rigidbody.AddForce(buoyancyForce);
-        rigidbody.AddForce(dragForce);
-
-        if (rotationCorrectionSpeed != 0)
-        {
-            float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, 0, rotationCorrectionSpeed * Time.fixedDeltaTime);
-            rigidbody.MoveRotation(angle);
-        }
-
-        // // Get the local angular velocity
-        
-        // // Calculate damping torques based on that angular velocity and apply it in the opposite direction (negative)
-        // float dampingTorque = rigidbody.angularVelocity * -dampingCoefficient;
-        
-        // rigidbody.AddTorque(dampingTorque);
     }
 
     public void onPlayAgain()
@@ -181,7 +163,8 @@ public class PigController : MonoBehaviour
             Vector3 p = transform.position + new Vector3(1.2f, 0, 0);
             Rigidbody2D bullet = Instantiate(bulletPrefab, p, Quaternion.identity);
             // Rigidbody2D r2 = bullet.GetComponent<Rigidbody2D>;
-            bullet.velocity = rigidbody.velocity + new Vector2(8, 0);
+            //bullet.velocity = rigidbody.velocity + new Vector2(8, 0);
+            bullet.velocity = new Vector2(8, 0);
             fireCoolDown = 0.5f;
 
             m_PigAnimation.TransferCoins(1);
@@ -202,7 +185,7 @@ public class PigController : MonoBehaviour
 
     void RecalculateMass()
     {
-        rigidbody.mass = minMass + coinCount * coinMass;
+        rigidbody.mass = minMass + Mathf.Max(0.0f, coinCount) * coinMass;
         float radius = collider.radius;
         area = Mathf.PI * radius * radius;
         volume = 4f * area * radius / 3f;
@@ -221,28 +204,20 @@ public class PigController : MonoBehaviour
         inWater = h > 0;
         fullySubmerged = h > radius * 2;
             
-        dragForce = -rigidbody.velocity.normalized * (.5f * rigidbody.velocity.sqrMagnitude * dragCoefficient * area);
-        
         if (!inWater)
         {
             buoyancyForce = fullyEmergedForce;
-            dragForce *= airDensity;
         } 
         else if (fullySubmerged)
         {
             buoyancyForce = fullySubmergedForce;            
-            dragForce *= waterDensity *  waterDragScale;
         } else {
-            dragForce *= waterDensity * waterDragScale;
-
             float asq = 2 * radius * h - h * h;
             float submergedVolume = ((Mathf.PI * h)/ 6.0f)*(3*asq+h*h);
 
             buoyancyForce = submergedVolume * waterDensity * -(Vector2)Physics.gravity;
             buoyancyForce += (volume - submergedVolume) * airDensity * -(Vector2)Physics.gravity;
 	   }
-
-        // if (debugDraw) Debug.DrawRay(wp, force/mass);
     }
     
 }

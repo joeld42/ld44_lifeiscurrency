@@ -10,6 +10,7 @@ public class CageRoot : MonoBehaviour
 
     public void Break() {
         AudioPlayer.PlayClip(cageBreak);
+        gameObject.SetActive(false);
         Destroy(gameObject);
     }
 

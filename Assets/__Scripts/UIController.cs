@@ -14,6 +14,7 @@ public class UIController : MonoBehaviour
     [Header("Child Controls")]
     public RectTransform gameOverPanel;
     public TextMeshProUGUI coinsCounter;
+    public TextMeshProUGUI speedCounter;
 
     public Button btnPlayAgain;
 
@@ -47,6 +48,7 @@ public class UIController : MonoBehaviour
         //{
         //    onPlayAgain();
         //}
+        speedCounter.text = string.Format("Speed: ({0}, {1})", heroPig.Velocity.x.ToString("F2"), heroPig.Velocity.y.ToString("F2"));
     }
 
     void UpdateCoinText( int coins )
@@ -57,7 +59,7 @@ public class UIController : MonoBehaviour
     void GameOver()
     {
         gameOverPanel.gameObject.SetActive(true);
-        heroPig.gameObject.SetActive(false);
+        //heroPig.gameObject.SetActive(false);
     }
     public void onPlayAgain()
     {
