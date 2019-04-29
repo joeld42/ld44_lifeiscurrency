@@ -78,12 +78,12 @@ public class PigController : MonoBehaviour
         Debug.Log("STARTING PIG AGAIN");
         RecalculateMass();
         OnCoinCountChanged?.Invoke(coinCount);
-        SceneryLoader.OnLevelLoad += LevelLoad;
+       // SceneryLoader.OnLevelLoad += LevelLoad;
     }
 
     private void OnDestroy()
     {
-        SceneryLoader.OnLevelLoad -= LevelLoad;
+       // SceneryLoader.OnLevelLoad -= LevelLoad;
     }
 
     void Update()
@@ -166,11 +166,7 @@ public class PigController : MonoBehaviour
         rigidbody.AddForce(buoyancyForce);
     }
 
-    void LevelLoad()
-    {
-        transform.localPosition = m_InitialPosition;
-        transform.localRotation = m_InitialRotation;
-    }
+
 
     void FireCoin()
     {
