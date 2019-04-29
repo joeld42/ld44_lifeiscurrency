@@ -15,6 +15,7 @@
 Shader "Brush/StandardDoubleSided" {
 Properties {
   _Color ("Main Color", Color) = (1,1,1,1)
+  _ColorIntensity ("Color Intensity", Range(0, 100)) = 1.0
   _SpecColor ("Specular Color", Color) = (0.5, 0.5, 0.5, 0)
   _Shininess ("Shininess", Range (0.01, 1)) = 0.078125
   _MainTex ("Base (RGB) TransGloss (A)", 2D) = "white" {}
@@ -48,6 +49,7 @@ Properties {
     sampler2D _MainTex;
     sampler2D _BumpMap;
     fixed4 _Color;
+    float _ColorIntensity;
     half _Shininess;
 
     void vert (inout appdata_full i /*, out Input o*/) {
@@ -58,7 +60,7 @@ Properties {
 
     void surf (Input IN, inout SurfaceOutputStandardSpecular o) {
       fixed4 tex = tex2D(_MainTex, IN.uv_MainTex);
-      o.Albedo = tex.rgb * _Color.rgb * IN.color.rgb;
+      o.Albedo = tex.rgb * _ColorIntensity * _Color.rgb * IN.color.rgb;
       o.Smoothness = _Shininess;
       o.Specular = _SpecColor;
       o.Normal = UnpackNormal(tex2D(_BumpMap, IN.uv_BumpMap));
