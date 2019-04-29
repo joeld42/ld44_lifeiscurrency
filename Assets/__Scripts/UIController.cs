@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+
 using TMPro;
 
 public class UIController : MonoBehaviour
@@ -11,6 +14,8 @@ public class UIController : MonoBehaviour
     [Header("Child Controls")]
     public RectTransform gameOverPanel;
     public TextMeshProUGUI coinsCounter;
+
+    public Button btnPlayAgain;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +27,14 @@ public class UIController : MonoBehaviour
         GameGlobals.OnGameOver += GameOver;
     }
 
+    private void OnEnable()
+    {
+        //btnPlayAgain.Select();
+
+        EventSystem evRef = EventSystem.current; 
+        evRef.SetSelectedGameObject( btnPlayAgain.gameObject );
+    }
+
     private void OnDestroy()
     {
         GameGlobals.OnGameOver -= GameOver;
@@ -30,10 +43,10 @@ public class UIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire3") && (GameGlobals.instance.isGameOver))
-        {
-            onPlayAgain();
-        }
+        //if (Input.GetButtonDown("Fire3") && (GameGlobals.instance.isGameOver))
+        //{
+        //    onPlayAgain();
+        //}
     }
 
     void UpdateCoinText( int coins )
@@ -44,9 +57,20 @@ public class UIController : MonoBehaviour
     void GameOver()
     {
         gameOverPanel.gameObject.SetActive(true);
+        heroPig.gameObject.SetActive(false);
     }
     public void onPlayAgain()
     {
         GameGlobals.instance.RestartGame();
+    }
+
+    public void onBackToTitle()
+    {
+        SceneManager.LoadScene("TitleScreen");
+    }
+
+    public void onQuit()
+    {
+        Application.Quit();
     }
 }

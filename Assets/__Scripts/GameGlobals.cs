@@ -38,7 +38,7 @@ public class GameGlobals : MonoBehaviour
     public void RestartGame()
     {
         isGameOver = false;
-        SceneManager.LoadScene("TitleScreen");
+        SceneManager.LoadScene("PigGame");
         isGameOver = false;
         OnGameRestart?.Invoke();
     }
