@@ -59,6 +59,7 @@ public class PigAnimation : MonoBehaviour
     private float m_CoinCounterTimer;
     const float m_CoinCounterSpeed = 2.0f;
     private Vector3 m_CoinCounterInitialPosition;
+    private Color m_CoinCounterInitialColor;
 
     // Start is called before the first frame update
     void Awake()
@@ -69,6 +70,7 @@ public class PigAnimation : MonoBehaviour
         m_PigController.OnCoinCountChanged += CoinCountChanged;
         m_Coins = new List<CoinVisualAnimation>();
         m_CoinCounterInitialPosition = m_CoinCounterText.rectTransform.localPosition;
+        m_CoinCounterInitialColor = m_CoinCounterText.color;
     }
 
     private void OnDestroy()
@@ -170,10 +172,26 @@ public class PigAnimation : MonoBehaviour
         m_EyesDead.SetActive(m_EyeState == EyeState.EyesDead);
 
         // coin counter text
-        if (m_CoinCounterTimer > 0)
+        m_CoinCounterText.transform.rotation = Quaternion.identity;
+        if (m_CoinCount <= 0)
         {
-            // keep coin counter stable
-            m_CoinCounterText.transform.rotation = Quaternion.identity;
+            m_CoinCounterText.rectTransform.localPosition = m_CoinCounterInitialPosition;
+            m_CoinCounterText.color = Color.red;
+        }
+        else if (m_CoinCount <= 3)
+        {
+            m_CoinCounterText.rectTransform.localPosition = m_CoinCounterInitialPosition;
+
+            float dangerFactor = (4.0f - m_CoinCount) / 3.0f;
+            float flashSpeed = 4.0f * dangerFactor;
+            m_CoinCounterText.color = Color.Lerp(
+                m_CoinCounterInitialColor,
+                new Color(1.0f, 0.0f, 0.0f,
+                    Mathf.Sin(flashSpeed * 2.0f * Mathf.PI * Time.time)),
+                dangerFactor);
+        }
+        else if (m_CoinCounterTimer > 0)
+        {
 
             m_CoinCounterTimer -= m_CoinCounterSpeed * Time.deltaTime;
             if (m_CoinCounterTimer < 0)
@@ -181,7 +199,7 @@ public class PigAnimation : MonoBehaviour
                 m_CoinCounterTimer = 0;
             }
 
-            Color textColor = m_CoinCounterText.color;
+            Color textColor = m_CoinCounterInitialColor;
             textColor.a = Mathf.SmoothStep(0.0f, 1.0f, m_CoinCounterTimer);
             m_CoinCounterText.color = textColor;
             m_CoinCounterText.rectTransform.localPosition = m_CoinCounterInitialPosition +
