@@ -78,12 +78,10 @@ public class PigController : MonoBehaviour
         Debug.Log("STARTING PIG AGAIN");
         RecalculateMass();
         OnCoinCountChanged?.Invoke(coinCount);
-        SceneryLoader.OnLevelLoad += LevelLoad;
     }
 
     private void OnDestroy()
     {
-        SceneryLoader.OnLevelLoad -= LevelLoad;
     }
 
     void Update()
