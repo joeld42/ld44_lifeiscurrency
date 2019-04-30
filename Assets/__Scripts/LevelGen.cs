@@ -98,6 +98,7 @@ public class LevelGen : MonoBehaviour {
                    
                     tile = Instantiate<Transform>(blockerChonks[Random.Range(0, blockerChonks.Count)].tilePrefab, transform);
                     tile.localPosition = tileCenter;
+                    tile.localScale = Vector3.one * Random.Range(1.0f, 1.3f);
                 } else if (tilemap[i,j] == 2)
                 {
                     tile = Instantiate<Transform>(stuffChonks[Random.Range(0, stuffChonks.Count)].tilePrefab, transform);

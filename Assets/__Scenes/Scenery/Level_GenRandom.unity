@@ -2296,6 +2296,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 227471bbdafde8d4bbadbba37aca4303, type: 2}
   - {fileID: 11400000, guid: d1388c20eb15feb42a4145f32742ffa3, type: 2}
   - {fileID: 11400000, guid: 1bd5eda78054e9343aa136483615e30c, type: 2}
+  - {fileID: 11400000, guid: 734b1e174572d9245a8e8e84f63b7b6f, type: 2}
+  - {fileID: 11400000, guid: bc7ec4f093082f9448ca965a5d3cb78b, type: 2}
   difficulty: 3
 --- !u!1 &705507993
 GameObject:

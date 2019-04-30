@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c96b034e43a40b45a76a8511522b626, type: 3}
-  m_Name: ChonkBlock45
+  m_Name: ChonkOneCoin
   m_EditorClassIdentifier: 
-  tilePrefab: {fileID: 6931774568458921733, guid: c9cb1b5822ae815478ded85a8a42ec66,
+  tilePrefab: {fileID: 4571459080232143703, guid: c5d0f5e0cbeda0c43a13ab61707121fc,
     type: 3}
   W: 1
   H: 1
-  chonkType: 1
+  chonkType: 2
