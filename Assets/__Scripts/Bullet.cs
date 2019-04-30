@@ -22,6 +22,7 @@ public class Bullet : MonoBehaviour {
         var cage = other.GetComponent<Cage>();
         if (cage) {
             cage.Break();
+            Destroy(gameObject);
         }
     }
 
