@@ -71,6 +71,7 @@ public class CoinVisualAnimation : MonoBehaviour
 
         m_StartRotation = Random.rotation;
         m_EndRotation = transform.localRotation;
+        m_EndRotation = Random.rotation;
 
         m_StartVelocityY =
              (m_EndPosition.y - m_StartPosition.y - 0.5f * m_Gravity * m_AttachDuration * m_AttachDuration) /
