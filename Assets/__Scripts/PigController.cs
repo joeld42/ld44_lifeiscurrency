@@ -20,6 +20,7 @@ public class PigController : MonoBehaviour
     public AudioClip squealClip;
     public AudioClip wingFlap;
     public AudioClip grunt;
+    public AudioClip fireClip;
 
     public float rotationCorrectionSpeed = 0.5f;
 
@@ -172,6 +173,7 @@ public class PigController : MonoBehaviour
 
     void FireCoin()
     {
+        AudioPlayer.PlayClip(fireClip, .8f);
         m_PigAnimation.Blink();
 
         //if (fireCoolDown > 0) return;

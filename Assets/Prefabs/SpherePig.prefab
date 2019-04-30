@@ -785,6 +785,7 @@ MonoBehaviour:
   squealClip: {fileID: 8300000, guid: 1ca183c117705384f8ab5a837c26313a, type: 3}
   wingFlap: {fileID: 8300000, guid: eb7008ae25bc6f1428af45d0c1d5d381, type: 3}
   grunt: {fileID: 8300000, guid: 66ab4150f79b5c34db7a2fa11e150167, type: 3}
+  fireClip: {fileID: 8300000, guid: c882c7ddadf280f4f901b768395ce69c, type: 3}
   rotationCorrectionSpeed: 0.05
   minMass: 6
   coinMass: 0.5
