@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/__Scenes/Scenery/Level_GenRandom.unity
     guid: dff29ae21bf3245428a06b3f738343fe
+  - enabled: 1
+    path: Assets/__Scenes/Scenery/Level_Tutorial.unity
+    guid: 9d938f26f579b4e27a6113e8d6d08670
   m_configObjects: {}

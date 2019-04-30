@@ -27,6 +27,18 @@ public class TitleScreenController : MonoBehaviour
         if (GameGlobals.instance != null)
         {
             GameGlobals.instance.isGameOver = false;
+            GameGlobals.instance.nextLevelToLoad = "";
+        }
+        SceneManager.LoadScene("PigGame");
+    }
+
+    public void OnPlayEndlessPressed()
+    {
+        // Make sure to clear the game over flag
+        if (GameGlobals.instance != null)
+        {
+            GameGlobals.instance.isGameOver = false;
+            GameGlobals.instance.nextLevelToLoad = "Level_GenRandom";
         }
         SceneManager.LoadScene("PigGame");
     }
